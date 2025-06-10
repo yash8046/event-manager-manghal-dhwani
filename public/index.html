@@ -254,6 +254,7 @@
             text-align: center;
             margin-bottom: 60px;
             position: relative;
+
         }
 
         .section-title h2 {
@@ -423,53 +424,64 @@
             transform: translateX(5px);
         }
 
-        /* Wedding Subservices */
-        .subservices {
-            margin-top: 30px;
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
+   /* Updated CSS for Subservices */
+.service-card {
+    position: relative;
+    overflow: hidden; /* Contain the expanded content */
+    transition: all 0.3s ease;
+}
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+.subservices {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, opacity 0.3s ease 0.2s;
+    margin-top: 0;
+}
 
-        .subservices.active {
-            display: block;
-        }
+.subservices.active {
+    max-height: 1500px; /* Adjust based on your content */
+    opacity: 1;
+    margin-top: 20px;
+}
 
-        .subservice-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
+.subservice-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    animation: fadeIn 0.5s ease;
+}
 
-        .subservice-item {
-            background: rgba(182, 141, 174, 0.1);
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid var(--muted-mauve);
-            transition: all 0.3s ease;
-        }
+/* Rest of your existing subservice styles remain the same */
+.subservice-item {
+    background: rgba(182, 141, 174, 0.1);
+    padding: 20px;
+    border-radius: 8px;
+    border-left: 4px solid var(--muted-mauve);
+    transition: all 0.3s ease;
+}
 
-        .subservice-item:hover {
-            background: rgba(182, 141, 174, 0.2);
-            transform: translateX(5px);
-        }
+.subservice-item:hover {
+    background: rgba(182, 141, 174, 0.2);
+    transform: translateX(5px);
+}
 
-        .subservice-item h4 {
-            color: var(--deep-plum-alt);
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-        }
+.subservice-item h4 {
+    color: var(--deep-plum-alt);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
 
-        .subservice-item p {
-            color: var(--charcoal-alt);
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
+.subservice-item p {
+    color: var(--charcoal-alt);
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
 
         /* Gallery Section */
         .gallery {
@@ -874,14 +886,14 @@
         margin-bottom: 60px;
     }
     
-    .section-title h2 {
+    .section-title1 h2 {
         font-family: 'Playfair Display', serif;
         font-size: 2.5rem;
         color: #F7D6CB;
         margin-bottom: 15px;
     }
     
-    .section-title p {
+    .section-title1 p {
         color: rgba(255,255,255,0.7);
         max-width: 700px;
         margin: 0 auto;
@@ -1088,35 +1100,8 @@
                     <div class="service-content">
                         <h3>Wedding Planning</h3>
                         <p>We create magical weddings that reflect your unique love story. From venue selection to decor, catering to entertainment, we handle every detail.</p>
-                        <a href="#" class="read-more toggle-subservices">Explore Services <i class="fas fa-chevron-down"></i></a>
-                        <div class="subservices">
-                            <div class="subservice-grid">
-                                <div class="subservice-item">
-                                    <h4>Logistics Management</h4>
-                                    <p>Comprehensive pickup and drop services for guests, ensuring smooth transportation throughout your event.</p>
-                                </div>
-                                <div class="subservice-item">
-                                    <h4>DJ & Artists</h4>
-                                    <p>Top-notch DJs and performers to keep your guests entertained and the energy high throughout your celebration.</p>
-                                </div>
-                                <div class="subservice-item">
-                                    <h4>Shehnai Players</h4>
-                                    <p>Traditional Shehnai performers to add authentic cultural music to your wedding ceremonies.</p>
-                                </div>
-                                <div class="subservice-item">
-                                    <h4>Dhol Band</h4>
-                                    <p>Energetic Dhol bands to create a festive atmosphere and get everyone dancing.</p>
-                                </div>
-                                <div class="subservice-item">
-                                    <h4>Mehendi Artists</h4>
-                                    <p>Skilled Mehendi artists to create beautiful, intricate designs for your hands and feet.</p>
-                                </div>
-                                <div class="subservice-item">
-                                    <h4>Makeup Artists</h4>
-                                    <p>Professional makeup artists to ensure you look your absolute best on your special day.</p>
-                                </div>
-                            </div>
-                        </div>
+                        <a href="#" class="read-more">Learn More <i class="fas fa-chevron-right"></i></a>
+                
                     </div>
                 </div>
 
@@ -1245,7 +1230,7 @@
     <section class="testimonials" id="testimonials">
       <div class="testimonial-particles" id="testimonial-particles"></div>
       <div class="testimonials-container">
-          <div class="section-title">
+          <div class="section-title1">
               <h2>Client Testimonials</h2>
               <p>Hear what our clients say about their unforgettable experiences with Manghal Dhwani Events</p>
           </div>
@@ -1538,26 +1523,40 @@
         });
 
         // Toggle Subservices
-        const toggleButtons = document.querySelectorAll('.toggle-subservices');
-        
-        toggleButtons.forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                const subservices = this.nextElementSibling;
-                const icon = this.querySelector('i');
-                
-                subservices.classList.toggle('active');
-                
-                if (subservices.classList.contains('active')) {
-                    icon.classList.remove('fa-chevron-down');
-                    icon.classList.add('fa-chevron-up');
-                } else {
-                    icon.classList.remove('fa-chevron-up');
-                    icon.classList.add('fa-chevron-down');
-                }
-            });
-        });
+        // Updated JavaScript for Toggle Functionality
+const toggleButtons = document.querySelectorAll('.toggle-subservices');
 
+toggleButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
+        const serviceCard = this.closest('.service-card');
+        const subservices = this.nextElementSibling;
+        const icon = this.querySelector('i');
+        
+        // Close all other subservices first
+        document.querySelectorAll('.subservices').forEach(item => {
+            if (item !== subservices) {
+                item.classList.remove('active');
+                const otherIcon = item.previousElementSibling.querySelector('i');
+                if (otherIcon) {
+                    otherIcon.classList.remove('fa-chevron-up');
+                    otherIcon.classList.add('fa-chevron-down');
+                }
+            }
+        });
+        
+        // Toggle current
+        subservices.classList.toggle('active');
+        
+        if (subservices.classList.contains('active')) {
+            icon.classList.remove('fa-chevron-down');
+            icon.classList.add('fa-chevron-up');
+        } else {
+            icon.classList.remove('fa-chevron-up');
+            icon.classList.add('fa-chevron-down');
+        }
+    });
+});
         // Animate Service Cards on Scroll
         const serviceCards = document.querySelectorAll('.service-card');
         
