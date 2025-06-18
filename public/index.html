@@ -86,7 +86,6 @@
         }
 
         .logo {
-            font-family: 'Playfair Display', serif;
             font-size: 28px;
             font-weight: 700;
             color: var(--blush-peach);
@@ -196,12 +195,37 @@
         }
 
         .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
+            background-color: var(--blush-peach);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            display: inline-block;
+            font-size: 5rem;
+            font-weight: 700;
             margin-bottom: 20px;
-            color: var(--blush-peach);
         }
-
+  .typewriter {
+            overflow: hidden;
+            border-right: 3px solid var(--muted-mauve);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: 1px;
+            animation: 
+                typing 3.5s steps(40, end),
+                blink-caret .75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--muted-mauve); }
+        }
+        
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 30px;
@@ -272,14 +296,18 @@
 }
 
 .section-title h2 {
-    font-family: 'Playfair Display', serif;
+    
     font-size: 2.8rem;
     color: var(--deep-plum);
     margin-bottom: 15px;
     position: relative;
     display: inline-block;
     overflow: hidden;
+    
+    
 }
+
+
 
 .section-title h2::after {
     content: '';
@@ -878,7 +906,8 @@
         /* Responsive Styles */
         @media (max-width: 992px) {
             .hero h1 {
-                font-size: 3rem;
+                  font-size: 3rem;
+                font-weight: 700;
             }
             
             .section-title h2 {
@@ -927,7 +956,8 @@
             }
 
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 3rem;
+                font-weight: 700;
             }
 
             .about-container {
@@ -941,7 +971,8 @@
 
         @media (max-width: 576px) {
             .hero h1 {
-                font-size: 2rem;
+              font-size: 3rem;
+                font-weight: 700;
             }
 
             .section-title h2 {
@@ -994,7 +1025,6 @@
     }
     
     .section-title1 h2 {
-        font-family: 'Playfair Display', serif;
         font-size: 2.5rem;
         color: #F7D6CB;
         margin-bottom: 15px;
@@ -1386,7 +1416,7 @@
     }
     
     .stat-number {
-        font-family: 'Playfair Display', Poppins;
+       
         font-size: 3.5rem;
         font-weight: 700;
         color: #F7D6CB;
@@ -1507,7 +1537,7 @@
     <section class="hero" id="home">
         <div id="particles-js"></div>
         <div class="hero-content">
-            <h1>Manghal Dhwani Events</h1>
+            <h1 id="animated-title">Manghal Dhwani Events</h1>
             <p>Creating unforgettable moments with impeccable planning and execution. We bring your vision to life with elegance and precision.</p>
             <a href="#contact" class="btn1n">Get in Touch</a>
         </div>
@@ -1521,7 +1551,7 @@
     </a>
     <!-- About Section -->
     <section class="about" id="about">
-        <div class="section-title">
+        <div class="section-title" id="floating-title">
             <h2>About Us</h2>
             <p>We are a premier event planning company dedicated to creating memorable experiences for all occasions.</p>
         </div>
@@ -2461,6 +2491,98 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+          document.addEventListener('DOMContentLoaded', function() {
+            // Text sequences to display
+            const textSequences = [
+               "Manghal Dhwani Events",
+                "Wedding Planning",
+                "Corporate Events",
+                "Social Gatherings",
+                "Movie Events",
+                "MICE Events",
+                "Concerts"
+                
+            ];
+            
+            const titleElement = document.getElementById('animated-title');
+            let sequenceIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            let typingSpeed = 100;
+            let pauseBetweenTexts = 2000;
+            
+            function typeWriter() {
+                const currentText = textSequences[sequenceIndex];
+                
+                if (isDeleting) {
+                    // Deleting characters
+                    titleElement.textContent = currentText.substring(0, charIndex - 1);
+                    charIndex--;
+                    typingSpeed = 50; // Faster when deleting
+                } else {
+                    // Adding characters
+                    titleElement.textContent = currentText.substring(0, charIndex + 1);
+                    charIndex++;
+                    typingSpeed = 100; // Normal speed when typing
+                }
+                
+                // When current text is complete
+                if (!isDeleting && charIndex === currentText.length) {
+                    // Pause at end of text
+                    typingSpeed = pauseBetweenTexts;
+                    isDeleting = true;
+                } else if (isDeleting && charIndex === 0) {
+                    // Move to next text
+                    isDeleting = false;
+                    sequenceIndex = (sequenceIndex + 1) % textSequences.length;
+                    typingSpeed = 500; // Pause before starting next text
+                }
+                
+                // Add/remove typewriter class for cursor effect
+                if (!isDeleting && charIndex < currentText.length) {
+                    titleElement.classList.add('typewriter');
+                } else {
+                    titleElement.classList.remove('typewriter');
+                }
+                
+                setTimeout(typeWriter, typingSpeed);
+            }
+            
+            // Start the animation after a brief delay
+            setTimeout(typeWriter, 1000);
+        });
+             document.addEventListener('DOMContentLoaded', function() {
+            // Split title into letters and wrap each in a span
+            const title = document.getElementById('floating-title');
+            const text = title.textContent;
+            title.innerHTML = '';
+
+            for (let i = 0; i < text.length; i++) {
+                const span = document.createElement('span');
+                span.textContent = text[i];
+                span.style.transitionDelay = `${i * 0.1}s`; // Staggered delay
+                title.appendChild(span);
+            }
+
+            // Animate when section comes into view
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Animate each letter
+                        const letters = title.querySelectorAll('span');
+                        letters.forEach(letter => {
+                            letter.classList.add('animate');
+                        });
+
+                        // Animate subtitle and button
+                        document.querySelector('.portfolio-subtitle').classList.add('animate');
+                        document.querySelector('.btn').classList.add('animate');
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            observer.observe(document.querySelector('.portfolio-section'));
+        });
   </script>
   
 </body>
