@@ -205,8 +205,7 @@
             margin-bottom: 30px;
             line-height: 1.6;
         }
-
-        .btn {
+ .btn1n {
             display: inline-block;
             padding: 12px 30px;
             background-color: var(--muted-mauve);
@@ -220,6 +219,37 @@
             text-decoration: none;
             box-shadow: 0 4px 15px rgba(166, 120, 153, 0.4);
         }
+       .btn {
+    opacity: 0;
+    transform: translateY(30px); /* slightly more offset for a fluid motion */
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: var(--muted-mauve);
+    color: var(--soft-cream); 
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.4s ease;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(166, 120, 153, 0.4);
+    animation: fadeUp 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation-delay: 1.3s;
+    animation-play-state: paused;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
         .btn:hover {
             background: linear-gradient(to right, var(--muted-mauve), var(--blush-peach-alt));
@@ -233,32 +263,51 @@
             position: relative;
         }
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-            position: relative;
+      .section-title {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+}
 
-        }
+.section-title h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    color: var(--deep-plum);
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
 
-        .section-title h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--deep-plum);
-            margin-bottom: 15px;
-            position: relative;
-            display: inline-block;
-        }
+.section-title h2::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 3px;
+    background: var(--muted-mauve);
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
 
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            width: 60px;
-            height: 3px;
-            background: var(--muted-mauve);
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
+/* Title animation effect */
+.section-title h2::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: var(--muted-mauve);
+    z-index: -1;
+    transform: translateX(-100%);
+    animation: slideInShadow 2s forwards ease-out;
+}
+
+@keyframes slideInShadow {
+    to {
+        transform: translateX(0);
+    }
+}
 
         .section-title p {
             color: var(--charcoal-alt);
@@ -308,11 +357,28 @@
             margin-bottom: 20px;
         }
 
-        .about-content p {
-            margin-bottom: 15px;
-            line-height: 1.8;
-            color: var(--charcoal);
-        }
+      .about-content p {
+    margin-bottom: 15px;
+    line-height: 1.8;
+    color: var(--charcoal);
+    opacity: 0;
+    transform: translateX(-40px);
+    animation: revealLeft 1s forwards ease-out;
+    animation-delay: var(--delay);
+    animation-play-state: paused;
+}
+
+/* Delays for staggered reveal */
+.about-content p:nth-child(2) { --delay: 0.3s; }
+.about-content p:nth-child(3) { --delay: 0.6s; }
+.about-content p:nth-child(4) { --delay: 0.9s; }
+
+@keyframes revealLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
 
         /* Services Section */
         .services {
@@ -998,10 +1064,38 @@
     
     /* Animation Classes */
     .testimonial-card.active {
-        transform: scale(1.05);
+        transform: scale(1.1);
         background: rgba(255,255,255,0.15);
         box-shadow: 0 20px 40px rgba(0,0,0,0.3);
     }
+ 
+.testimonial-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.quote-stars {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.quote-icon {
+  font-size: 2.5rem;
+  color: #A67899; /* Mauve */
+  line-height: 1;
+}
+
+.testimonial-stars {
+  color: #FFD700; /* Golden stars */
+  font-size: 1.6rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+
     
     /* Responsive Styles */
     @media (max-width: 992px) {
@@ -1195,6 +1289,156 @@
                 display: none;
             }
         }
+.stats {
+        position: relative;
+        padding: 100px 20px;
+        background: linear-gradient(135deg, #3B0A47 0%, #2D0B36 100%);
+        overflow: hidden;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    
+    .particle-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        opacity: 0.6;
+    }
+    
+    .stats-container {
+        position: relative;
+        z-index: 1;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .stats-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        margin-bottom: 30px;
+    }
+    
+    .stat-card {
+        flex: 1 1 300px;
+        max-width: 350px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(8px);
+        border-radius: 16px;
+        padding: 40px 25px;
+        text-align: center;
+        border: 1px solid rgba(244, 207, 198, 0.15);
+        transition: all 0.4s ease;
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    
+    .stat-card.animate {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    .stat-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    }
+    
+    .stat-number {
+        font-family: 'Playfair Display', serif;
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: #F7D6CB;
+        margin-bottom: 8px;
+        line-height: 1;
+        letter-spacing: 1px;
+    }
+    
+    .stat-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: white;
+        letter-spacing: 0.5px;
+    }
+    
+    .stat-desc {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1rem;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.85);
+        margin-bottom: 20px;
+        font-weight: 300;
+    }
+    
+    .stat-icon {
+        font-size: 2rem;
+        color: #B58DAE;
+        margin-top: 15px;
+        transition: all 0.3s ease;
+    }
+    
+    .stat-card:hover .stat-icon {
+        transform: scale(1.2);
+        color: #F4CFC6;
+    }
+    
+    /* Animations */
+    @keyframes eliteEnterFromLeft {
+        0% { transform: translateX(-50px) scale(0.9); opacity: 0; }
+        100% { transform: translateX(0) scale(1); opacity: 1; }
+    }
+    
+    @keyframes eliteEnterFromRight {
+        0% { transform: translateX(50px) scale(0.9); opacity: 0; }
+        100% { transform: translateX(0) scale(1); opacity: 1; }
+    }
+    
+    @keyframes eliteRiseFromBottom {
+        0% { transform: translateY(40px) scale(0.95); opacity: 0; }
+        100% { transform: translateY(0) scale(1); opacity: 1; }
+    }
+    
+    .animate-elite-left.animate {
+        animation: eliteEnterFromLeft 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    
+    .animate-elite-right.animate {
+        animation: eliteEnterFromRight 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    
+    .animate-elite-rise.animate {
+        animation: eliteRiseFromBottom 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+        .stat-card {
+            flex: 1 1 45%;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .stats-row {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .stat-card {
+            flex: 1 1 100%;
+            max-width: 100%;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+        }
+    }
     </style>
 </head>
 <body>
@@ -1229,7 +1473,7 @@
         <div class="hero-content">
             <h1>Manghal Dhwani Events</h1>
             <p>Creating unforgettable moments with impeccable planning and execution. We bring your vision to life with elegance and precision.</p>
-            <a href="#contact" class="btn">Get in Touch</a>
+            <a href="#contact" class="btn1n">Get in Touch</a>
         </div>
     </section>
 <a href="#contact" class="floating-join-btn back-to-top">
@@ -1342,6 +1586,75 @@
             </div>
         </div>
     </section>
+<section class="stats" id="stats">
+    <div class="particle-bg" id="stats-particles"></div>
+    <div class="section-title animate-elite-rise">
+        <h2>Our Impact in Numbers</h2>
+        <p>Years of creating unforgettable moments, quantified</p>
+    </div>
+    
+    <div class="stats-container">
+        <!-- Row 1 -->
+        <div class="stats-row">
+            <div class="stat-card animate-elite-left" data-delay="0">
+                <div class="stat-number" data-count="500">0</div>
+                <div class="stat-title">Weddings Planned</div>
+                <div class="stat-desc">From intimate gatherings to grand destination weddings in Udaipur & Goa</div>
+                <div class="stat-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+            </div>
+            
+            <div class="stat-card animate-elite-rise" data-delay="100">
+                <div class="stat-number" data-count="300">0</div>
+                <div class="stat-title">Corporate Events</div>
+                <div class="stat-desc">Product launches, award nights & annual corporate galas</div>
+                <div class="stat-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+            </div>
+            
+            <div class="stat-card animate-elite-right" data-delay="200">
+                <div class="stat-number" data-count="200">0</div>
+                <div class="stat-title">Birthday Parties</div>
+                <div class="stat-desc">From Barbie-themed birthdays to retro Bollywood nights</div>
+                <div class="stat-icon">
+                    <i class="fas fa-birthday-cake"></i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Row 2 -->
+        <div class="stats-row">
+            <div class="stat-card animate-elite-left" data-delay="300">
+                <div class="stat-number" data-count="50000">0+</div>
+                <div class="stat-title">Happy Guests</div>
+                <div class="stat-desc">Catering, décor & entertainment for over 50,000 smiling faces</div>
+                <div class="stat-icon">
+                    <i class="fas fa-smile-beam"></i>
+                </div>
+            </div>
+            
+            <div class="stat-card animate-elite-rise" data-delay="400">
+                <div class="stat-number" data-count="95">0%</div>
+                <div class="stat-title">Client Retention</div>
+                <div class="stat-desc">Most of our clients come back for multiple events</div>
+                <div class="stat-icon">
+                    <i class="fas fa-redo"></i>
+                </div>
+            </div>
+            
+            <div class="stat-card animate-elite-right" data-delay="500">
+                <div class="stat-number" data-count="30">0+</div>
+                <div class="stat-title">Celebrity Performances</div>
+                <div class="stat-desc">Featuring stars like Neha Kakkar, Badshah, and prominent DJs</div>
+                <div class="stat-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Gallery Section -->
     <section class="gallery" id="gallery">
@@ -1402,77 +1715,93 @@
             </div>
         </div>
     </section>
-    <section class="testimonials" id="testimonials">
-      <div class="testimonial-particles" id="testimonial-particles"></div>
-      <div class="testimonials-container">
-          <div class="section-title1">
-              <h2>Client Testimonials</h2>
-              <p>Hear what our clients say about their unforgettable experiences with Manghal Dhwani Events</p>
+ <section class="testimonials" id="testimonials">
+  <div class="testimonial-particles" id="testimonial-particles"></div>
+  <div class="testimonials-container">
+    <div class="section-title1">
+      <h2>Client Testimonials</h2>
+      <p>Hear what our clients say about their unforgettable experiences with Manghal Dhwani Events</p>
+    </div>
+
+    <div class="testimonial-slider">
+
+      <!-- Testimonial 1 -->
+      <div class="testimonial-card active">
+        <div class="testimonial-content">
+          <div class="quote-stars">
+            <div class="quote-icon">"</div>
+            <div class="testimonial-stars">★★★★★</div>
           </div>
-          
-          <div class="testimonial-slider">
-              <!-- Testimonial 1 -->
-              <div class="testimonial-card active">
-                  <div class="testimonial-content">
-                      <div class="quote-icon">"</div>
-                      <p class="testimonial-text">Manghal Dhwani transformed our wedding into a magical experience. Their attention to detail and flawless execution made our special day absolutely perfect. The decor, music, and coordination were beyond our expectations!</p>
-                      <div class="client-info">
-                          <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Priya Sharma" class="client-avatar">
-                          <div class="client-details">
-                              <h4>Priya Sharma</h4>
-                              <p>Wedding Client, Delhi</p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              
-              <!-- Testimonial 2 -->
-              <div class="testimonial-card">
-                  <div class="testimonial-content">
-                      <div class="quote-icon">"</div>
-                      <p class="testimonial-text">The corporate gala they organized for us received rave reviews from all attendees. Their team handled everything from venue selection to entertainment seamlessly. Truly professional event planners!</p>
-                      <div class="client-info">
-                          <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Rahul Mehta" class="client-avatar">
-                          <div class="client-details">
-                              <h4>Rahul Mehta</h4>
-                              <p>Corporate Client, Mumbai</p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              
-              <!-- Testimonial 3 -->
-              <div class="testimonial-card">
-                  <div class="testimonial-content">
-                      <div class="quote-icon">"</div>
-                      <p class="testimonial-text">Our daughter's birthday party was a fairy tale come true! The themed decorations, activities, and catering were exceptional. The children haven't stopped talking about it. Worth every penny!</p>
-                      <div class="client-info">
-                          <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Anjali Patel" class="client-avatar">
-                          <div class="client-details">
-                              <h4>Anjali Patel</h4>
-                              <p>Birthday Party, Bangalore</p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              
-              <!-- Testimonial 4 -->
-              <div class="testimonial-card">
-                  <div class="testimonial-content">
-                      <div class="quote-icon">"</div>
-                      <p class="testimonial-text">The exhibition they managed for our product launch was spectacular. They understood our brand perfectly and created an immersive experience that wowed our clients and partners alike.</p>
-                      <div class="client-info">
-                          <img src="https://randomuser.me/api/portraits/men/72.jpg" alt="Vikram Singh" class="client-avatar">
-                          <div class="client-details">
-                              <h4>Vikram Singh</h4>
-                              <p>Product Launch, Hyderabad</p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+          <p class="testimonial-text">Manghal Dhwani transformed our wedding into a magical experience. Their attention to detail and flawless execution made our special day absolutely perfect. The decor, music, and coordination were beyond our expectations!</p>
+          <div class="client-info">
+            <img src="images/people-9.jpg" alt="Priya Sharma" class="client-avatar">
+            <div class="client-details">
+              <h4>Priya Sharma</h4>
+              <p>Wedding Client, Delhi</p>
+            </div>
           </div>
+        </div>
       </div>
-  </section>
+
+      <!-- Testimonial 2 -->
+      <div class="testimonial-card">
+        <div class="testimonial-content">
+          <div class="quote-stars">
+            <div class="quote-icon">"</div>
+            <div class="testimonial-stars">★★★★★</div>
+          </div>
+          <p class="testimonial-text">The corporate gala they organized for us received rave reviews from all attendees. Their team handled everything from venue selection to entertainment seamlessly. Truly professional event planners!</p>
+          <div class="client-info">
+            <img src="images/people-2.jpg" alt="Rahul Mehta" class="client-avatar">
+            <div class="client-details">
+              <h4>Rahul Mehta</h4>
+              <p>Corporate Client, Mumbai</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="testimonial-card">
+        <div class="testimonial-content">
+          <div class="quote-stars">
+            <div class="quote-icon">"</div>
+            <div class="testimonial-stars">★★★★★</div>
+          </div>
+          <p class="testimonial-text">Our daughter's birthday party was a fairy tale come true! The themed decorations, activities, and catering were exceptional. The children haven't stopped talking about it. Worth every penny!</p>
+          <div class="client-info">
+            <img src="images/people-7.jpg" alt="Anjali Patel" class="client-avatar">
+            <div class="client-details">
+              <h4>Anjali Patel</h4>
+              <p>Birthday Party, Bangalore</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 4 -->
+      <div class="testimonial-card">
+        <div class="testimonial-content">
+          <div class="quote-stars">
+            <div class="quote-icon">"</div>
+            <div class="testimonial-stars">★★★★★</div>
+          </div>
+          <p class="testimonial-text">The exhibition they managed for our product launch was spectacular. They understood our brand perfectly and created an immersive experience that wowed our clients and partners alike.</p>
+          <div class="client-info">
+            <img src="images/people-1.jpg" alt="Vikram Singh" class="client-avatar">
+            <div class="client-details">
+              <h4>Vikram Singh</h4>
+              <p>Product Launch, Hyderabad</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
     <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="section-title">
@@ -1615,7 +1944,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 Manghal Dhwani Events and Planners. All Rights Reserved. Made by Ashish Ranjan Choudhary</p>
+            <p>&copy; 2025 Manghal Dhwani Events and Planners. All Rights Reserved.</p>
         </div>
     </footer>
 
@@ -1879,7 +2208,7 @@ window.addEventListener('scroll', animateCards);
               activateTestimonial(nextIndex);
           }
   
-          setInterval(rotateTestimonials, 3500);
+          setInterval(rotateTestimonials, 2000);
   
           // Allow manual click to activate testimonial
           testimonials.forEach((testimonial, index) => {
@@ -1950,6 +2279,99 @@ const observer = new IntersectionObserver(entries => {
 serviceImages.forEach(img => {
     observer.observe(img);
 });
+document.addEventListener("DOMContentLoaded", function () {
+    const section = document.querySelector(".about-content");
+    const animatedElements = section.querySelectorAll("p, .btn");
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animatedElements.forEach(el => el.style.animationPlayState = 'running');
+            }
+        });
+    }, { threshold: 0.2 });
+
+    observer.observe(section);
+});
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize particles
+        if (document.getElementById('stats-particles')) {
+            particlesJS('stats-particles', {
+                "particles": {
+                    "number": { "value": 40, "density": { "enable": true, "value_area": 800 } },
+                    "color": { "value": ["#F4CFC6", "#A67899", "#FFD700"] },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": { "width": 0, "color": "#000000" }
+                    },
+                    "opacity": { "value": 0.5, "random": true },
+                    "size": { "value": 4, "random": true, "anim": { "enable": true, "speed": 2, "size_min": 1 } },
+                    "line_linked": { "enable": false },
+                    "move": {
+                        "enable": true,
+                        "speed": 0.5,
+                        "direction": "none",
+                        "random": true,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": { "enable": true, "mode": "bubble" },
+                        "onclick": { "enable": true, "mode": "repulse" }
+                    },
+                    "modes": {
+                        "bubble": { "distance": 100, "size": 6, "duration": 2, "opacity": 0.6 },
+                        "repulse": { "distance": 80, "duration": 0.4 }
+                    }
+                },
+                "retina_detect": true
+            });
+        }
+
+        // Animate stats counting
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            const speed = 200;
+            
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-count');
+                const count = +counter.innerText.replace(/\D/g, '');
+                const increment = target / speed;
+                
+                if (count < target) {
+                    counter.innerText = counter.innerText.includes('%') 
+                        ? Math.ceil(count + increment) + '%'
+                        : Math.ceil(count + increment) + '+';
+                    setTimeout(animateCounters, 1);
+                }
+            });
+        }
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    if (entry.target.classList.contains('stat-card')) {
+                        const delay = entry.target.getAttribute('data-delay') || 0;
+                        entry.target.style.animationDelay = `${delay}ms`;
+                        setTimeout(animateCounters, delay + 300);
+                    }
+                }
+            });
+        }, { threshold: 0.1 });
+
+        // Observe all animated elements
+        document.querySelectorAll('.animate-elite-left, .animate-elite-right, .animate-elite-rise, .stat-card').forEach(el => {
+            observer.observe(el);
+        });
+    });
 
   </script>
   
