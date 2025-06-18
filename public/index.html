@@ -30,7 +30,8 @@
             font-family: 'Poppins', sans-serif;
             background-color: var(--soft-cream);
             color: var(--charcoal);
-            overflow-x: hidden;
+           max-width: 100%;
+    overflow-x: hidden;
         }
 
         /* Particle Background */
@@ -338,9 +339,10 @@
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
     height: 400px;
 
- opacity: 0;
-    transform: translateX(100px);
-    transition: all 0.4s ease;
+    opacity: 0;
+    transform: translateX(50px);   /* Reduced value for smoother animation */
+    transition: transform 0.5s ease, opacity 0.5s ease; /* More specific transitions */
+    will-change: transform, opacity;
 }
 
 .about-img.animate-img {
@@ -592,10 +594,10 @@
            opacity: 0;
         transform: translateX(100px);
         transition: all 0.2s ease;
+         will-change: transform, opacity;
          }
           .gallery-item.animate-img {
-           opacity: 1;
-           transform: translateX(0);
+        animation: slideInFromLeft 0.8s ease-out forwards;
            }
          .gallery-item img {
             width: 100%;
@@ -1023,10 +1025,10 @@
             opacity: 0;
     transform: translateX(-100px);
     transition: all 0.2s ease;
+     will-change: transform, opacity;
     }
     .testimonial-card.animate-img {
-    opacity: 1;
-    transform: translateX(0);
+    animation: slideInFromLeft 0.8s ease-out forwards;
 }
     
     .testimonial-card::before {
@@ -1361,11 +1363,9 @@
         transform: translateY(20px);
     }
     
-    .stat-card.animate {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    
+    .stat-card.animate-img {
+    animation: slideInFromLeft 0.8s ease-out forwards;
+}
     .stat-card:hover {
         transform: translateY(-8px) scale(1.02);
         background: rgba(255, 255, 255, 0.15);
@@ -1373,7 +1373,7 @@
     }
     
     .stat-number {
-        font-family: 'Playfair Display', serif;
+        font-family: 'Playfair Display', Poppins;
         font-size: 3.5rem;
         font-weight: 700;
         color: #F7D6CB;
@@ -1610,7 +1610,7 @@
         </div>
     </section>
 <section class="stats" id="stats">
-    <div class="particle-bg" id="testimonial-particles"></div>
+    <div class="particle-bg" id="stats-particles"></div>
     <div class="section-title1 animate-elite-rise">
         <h2>Our Impact in Numbers</h2>
         <p>Years of creating unforgettable moments, quantified</p>
@@ -2296,7 +2296,7 @@ const observer = new IntersectionObserver(entries => {
         }
     });
 }, {
-    threshold: 0.1 // triggers early even if a small part is visible
+    threshold: 0.3 // triggers early even if a small part is visible
 });
 document.querySelectorAll('.about-img').forEach(img => observer.observe(img));
 document.querySelectorAll('.gallery-item').forEach(img => observer.observe(img));
@@ -2436,7 +2436,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.3 });
 
         // Observe all animated elements
         document.querySelectorAll('.animate-elite-left, .animate-elite-right, .animate-elite-rise, .stat-card').forEach(el => {
