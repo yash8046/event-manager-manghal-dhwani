@@ -901,32 +901,7 @@
             text-decoration: none;
         }
 
-        /* Back to Top Button */
-        .back-to-top {
-            position: fixed;
-            background-color: var(--muted-mauve);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 999;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .back-to-top.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .back-to-top:hover {
-            background-color: var(--deep-plum-alt);
-            transform: translateY(-3px);
-        }
+        
 
         /* Responsive Styles */
         @media (max-width: 992px) {
@@ -1041,7 +1016,7 @@
     padding: 0 20px;
     overflow: hidden;
         margin: 0 auto;
-        overflow: hidden;
+        
     }
     
     .section-title1 {
@@ -1107,7 +1082,7 @@
         overflow: visible;
             opacity: 0;
     transform: translateX(-100px);
-    transition: all 0.2s ease;
+
      will-change: transform, opacity;
     }
     .testimonial-card.animate-img {
@@ -1172,9 +1147,10 @@
     
     /* Animation Classes */
     .testimonial-card.active {
-        transform: scale(1.1);
+        transform: scale(1.05);
         background: rgba(255,255,255,0.15);
         box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+         z-index: 2; 
     }
  
 .testimonial-content {
@@ -1579,11 +1555,11 @@
         <div class="hero-content">
             <h1 id="animated-title">Manghal Dhwani Events</h1>
             <p>Creating unforgettable moments with impeccable planning and execution. We bring your vision to life with elegance and precision.</p>
-            <a href="#contact" class="btn1n">Get in Touch</a>
+            <a href="#services" class="btn1n">Our Services</a>
         </div>
     </section>
 <a href="#contact" class="floating-join-btn back-to-top">
-    Join Now <i class="fas fa-arrow-right"></i>
+    Contact Us <i class="fas fa-arrow-right"></i>
 </a>
 <a href="https://chat.whatsapp.com/" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-whatsapp"></i>
@@ -2106,16 +2082,7 @@
             });
         });
 
-        // Back to Top Button
-        const backToTopBtn = document.querySelector('.back-to-top');
-        
-        window.addEventListener('scroll', function() {
-            if (window.pageYOffset > 300) {
-                backToTopBtn.classList.add('active');
-            } else {
-                backToTopBtn.classList.remove('active');
-            }
-        });
+     
         
         backToTopBtn.addEventListener('click', function() {
            document.querySelector('#contact').scrollIntoView({
