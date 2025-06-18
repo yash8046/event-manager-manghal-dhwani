@@ -230,8 +230,12 @@
             font-size: 1.2rem;
             margin-bottom: 30px;
             line-height: 1.6;
+
         }
- .btn1n {
+        
+        
+
+           .btn1n {
             display: inline-block;
             padding: 12px 30px;
             background-color: var(--muted-mauve);
@@ -294,20 +298,28 @@
     margin-bottom: 60px;
     position: relative;
 }
-
 .section-title h2 {
-    
     font-size: 2.8rem;
     color: var(--deep-plum);
     margin-bottom: 15px;
     position: relative;
     display: inline-block;
     overflow: hidden;
-    
-    
 }
 
+.section-title h2 span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(50px) rotate(10deg);
+    filter: blur(3px);
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
 
+.section-title h2 span.animate {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+    filter: blur(0);
+}
 
 .section-title h2::after {
     content: '';
@@ -408,6 +420,19 @@
             margin-bottom: 20px;
         }
 
+.about-content h3 span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(50px) rotate(10deg);
+    filter: blur(3px);
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.about-content h3 span.animate {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+    filter: blur(0);
+}
       .about-content p {
     margin-bottom: 15px;
     line-height: 1.8;
@@ -1028,8 +1053,23 @@
         font-size: 2.5rem;
         color: #F7D6CB;
         margin-bottom: 15px;
+
         
     }
+    
+.section-title1 h2 span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(50px) rotate(10deg);
+    filter: blur(3px);
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.section-title1 h2 span.animate {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+    filter: blur(0);
+}
     
     .section-title1 p {
         color: rgba(255,255,255,0.7);
@@ -2551,38 +2591,48 @@ document.addEventListener("DOMContentLoaded", function () {
             // Start the animation after a brief delay
             setTimeout(typeWriter, 1000);
         });
-             document.addEventListener('DOMContentLoaded', function() {
-            // Split title into letters and wrap each in a span
-            const title = document.getElementById('floating-title');
-            const text = title.textContent;
-            title.innerHTML = '';
+            document.addEventListener('DOMContentLoaded', function() {
+    // Function to animate section titles
+ function animateSectionTitles() {
+    const sectionTitles = document.querySelectorAll('.section-title h2,.section-title1 h2,.about-content h3');
 
-            for (let i = 0; i < text.length; i++) {
-                const span = document.createElement('span');
-                span.textContent = text[i];
-                span.style.transitionDelay = `${i * 0.1}s`; // Staggered delay
-                title.appendChild(span);
+    sectionTitles.forEach(title => {
+        const text = title.textContent;
+        title.innerHTML = '';
+
+        for (let i = 0; i < text.length; i++) {
+            const char = text[i];
+            const span = document.createElement('span');
+
+            // Preserve spaces
+            if (char === ' ') {
+                span.innerHTML = '&nbsp;'; // Non-breaking space for proper rendering
+            } else {
+                span.textContent = char;
             }
 
-            // Animate when section comes into view
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // Animate each letter
-                        const letters = title.querySelectorAll('span');
-                        letters.forEach(letter => {
-                            letter.classList.add('animate');
-                        });
+            span.style.transitionDelay = `${i * 0.05}s`;
+            title.appendChild(span);
+        }
 
-                        // Animate subtitle and button
-                        document.querySelector('.portfolio-subtitle').classList.add('animate');
-                        document.querySelector('.btn').classList.add('animate');
-                    }
-                });
-            }, { threshold: 0.5 });
+        // Intersection Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const letters = entry.target.querySelectorAll('span');
+                    letters.forEach(letter => letter.classList.add('animate'));
+                    observer.unobserve(entry.target); // animate once
+                }
+            });
+        }, { threshold: 0.5 });
 
-            observer.observe(document.querySelector('.portfolio-section'));
-        });
+        observer.observe(title);
+    });
+}
+
+animateSectionTitles();
+
+});
   </script>
   
 </body>
