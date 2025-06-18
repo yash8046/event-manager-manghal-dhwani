@@ -331,13 +331,24 @@
             align-items: center;
         }
 
-        .about-img {
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            height: 400px;
-        }
+ .about-img {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    height: 400px;
+
+ opacity: 0;
+    transform: translateX(100px);
+    transition: all 0.4s ease;
+}
+
+.about-img.animate-img {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
 
         .about-img img {
             width: 100%;
@@ -578,10 +589,15 @@
             overflow: hidden;
             height: 250px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .gallery-item img {
+           opacity: 0;
+        transform: translateX(100px);
+        transition: all 0.2s ease;
+         }
+          .gallery-item.animate-img {
+           opacity: 1;
+           transform: translateX(0);
+           }
+         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -1004,7 +1020,14 @@
         border: 1px solid rgba(244, 207, 198, 0.2);
         position: relative;
         overflow: visible;
+            opacity: 0;
+    transform: translateX(-100px);
+    transition: all 0.2s ease;
     }
+    .testimonial-card.animate-img {
+    opacity: 1;
+    transform: translateX(0);
+}
     
     .testimonial-card::before {
         content: '';
@@ -1587,7 +1610,7 @@
         </div>
     </section>
 <section class="stats" id="stats">
-    <div class="particle-bg" id="stats-particles"></div>
+    <div class="particle-bg" id="testimonial-particles"></div>
     <div class="section-title1 animate-elite-rise">
         <h2>Our Impact in Numbers</h2>
         <p>Years of creating unforgettable moments, quantified</p>
@@ -2275,6 +2298,9 @@ const observer = new IntersectionObserver(entries => {
 }, {
     threshold: 0.1 // triggers early even if a small part is visible
 });
+document.querySelectorAll('.about-img').forEach(img => observer.observe(img));
+document.querySelectorAll('.gallery-item').forEach(img => observer.observe(img));
+document.querySelectorAll('.testimonial-card').forEach(img => observer.observe(img));
 
 serviceImages.forEach(img => {
     observer.observe(img);
@@ -2300,37 +2326,82 @@ document.addEventListener("DOMContentLoaded", function () {
         if (document.getElementById('stats-particles')) {
             particlesJS('stats-particles', {
                 "particles": {
-                    "number": { "value": 40, "density": { "enable": true, "value_area": 800 } },
-                    "color": { "value": ["#F4CFC6", "#A67899", "#FFD700"] },
-                    "shape": {
-                        "type": "circle",
-                        "stroke": { "width": 0, "color": "#000000" }
-                    },
-                    "opacity": { "value": 0.5, "random": true },
-                    "size": { "value": 4, "random": true, "anim": { "enable": true, "speed": 2, "size_min": 1 } },
-                    "line_linked": { "enable": false },
-                    "move": {
-                        "enable": true,
-                        "speed": 0.5,
-                        "direction": "none",
-                        "random": true,
-                        "straight": false,
-                        "out_mode": "out",
-                        "bounce": false
-                    }
-                },
-                "interactivity": {
-                    "detect_on": "canvas",
-                    "events": {
-                        "onhover": { "enable": true, "mode": "bubble" },
-                        "onclick": { "enable": true, "mode": "repulse" }
-                    },
-                    "modes": {
-                        "bubble": { "distance": 100, "size": 6, "duration": 2, "opacity": 0.6 },
-                        "repulse": { "distance": 80, "duration": 0.4 }
-                    }
-                },
-                "retina_detect": true
+    "number": {
+      "value": 60,
+      "density": {
+        "enable": true,
+        "value_area": 1000
+      }
+    },
+    "color": {
+      "value": ["#CFAE90", "#A67899", "#F7D6CB"] // Gold, Mauve, Peach
+    },
+    "shape": {
+      "type": "polygon",
+      "polygon": {
+        "nb_sides": 6
+      },
+      "stroke": {
+        "width": 0,
+        "color": "#000000"
+      }
+      // OR Use small mandala PNG:
+      // "type": "image",
+      // "image": {
+      //   "src": "path/to/mandala.png",
+      //   "width": 100,
+      //   "height": 100
+      // }
+    },
+    "opacity": {
+      "value": 0.4,
+      "random": true
+    },
+    "size": {
+      "value": 6,
+      "random": true
+    },
+    "line_linked": {
+      "enable": false
+    },
+    "move": {
+      "enable": true,
+      "speed": 0.8,
+      "direction": "none",
+      "random": true,
+      "straight": false,
+      "out_mode": "out",
+      "bounce": false
+    }
+  },
+  "interactivity": {
+    "detect_on": "canvas",
+    "events": {
+      "onhover": {
+        "enable": true,
+        "mode": "bubble"
+      },
+      "onclick": {
+        "enable": true,
+        "mode": "repulse"
+      },
+      "resize": true
+    },
+    "modes": {
+      "bubble": {
+        "distance": 200,
+        "size": 10,
+        "duration": 2,
+        "opacity": 0.6,
+        "speed": 5
+      },
+      "repulse": {
+        "distance": 150,
+        "duration": 0.4
+      }
+    }
+  },
+  "retina_detect": true
             });
         }
 
