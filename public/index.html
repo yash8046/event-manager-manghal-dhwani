@@ -981,7 +981,9 @@
     .testimonials-container {
         position: relative;
         z-index: 1;
-        max-width: 1800px;
+       max-width: 100%;
+    padding: 0 20px;
+    overflow: hidden;
         margin: 0 auto;
         overflow: hidden;
     }
@@ -1142,8 +1144,8 @@
     
     @media (max-width: 768px) {
         .testimonial-card {
-            flex: 0 0 100%;
-            margin-bottom: 20px;
+           flex: 0 0 calc(50% - 40px);
+        max-width: calc(50% - 40px);
         }
         
         .testimonial-slider {
