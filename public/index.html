@@ -6,6 +6,7 @@
     <title>Manghal Dhwani Events and Planners</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --deep-plum: #2D0B36;
@@ -31,7 +32,7 @@
             background-color: var(--soft-cream);
             color: var(--charcoal);
            max-width: 100%;
-    overflow-x: hidden;
+           overflow-x: hidden;
         }
 
         /* Particle Background */
@@ -982,6 +983,7 @@
         z-index: 1;
         max-width: 1800px;
         margin: 0 auto;
+        overflow: hidden;
     }
     
     .section-title1 {
@@ -1009,10 +1011,10 @@
         display: flex;
         gap: 30px;
         scroll-snap-type: x mandatory;
-        overflow-x: auto;
         padding-bottom: 30px;
         scrollbar-width: none;
-        overflow-x: visible;
+        width: 100%;
+        overflow-x: auto;
     }
     
     .testimonial-slider::-webkit-scrollbar {
