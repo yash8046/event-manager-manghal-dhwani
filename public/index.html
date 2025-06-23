@@ -6,7 +6,6 @@
     <title>Manghal Dhwani Events and Planners</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    
     <style>
         :root {
             --deep-plum: #2D0B36;
@@ -31,8 +30,7 @@
             font-family: 'Poppins', sans-serif;
             background-color: var(--soft-cream);
             color: var(--charcoal);
-           max-width: 100%;
-           overflow-x: hidden;
+            overflow-x: hidden;
         }
 
         /* Particle Background */
@@ -86,6 +84,7 @@
         }
 
         .logo {
+  
             font-size: 28px;
             font-weight: 700;
             color: var(--blush-peach);
@@ -195,47 +194,18 @@
         }
 
         .hero h1 {
-            background-color: var(--blush-peach);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            color: transparent;
-            display: inline-block;
-            font-size: 5rem;
-            font-weight: 700;
+        
+            font-size: 4rem;
             margin-bottom: 20px;
+            color: var(--blush-peach);
         }
-  .typewriter {
-            overflow: hidden;
-            border-right: 3px solid var(--muted-mauve);
-            white-space: nowrap;
-            margin: 0 auto;
-            letter-spacing: 1px;
-            animation: 
-                typing 3.5s steps(40, end),
-                blink-caret .75s step-end infinite;
-        }
-        
-        @keyframes typing {
-            from { width: 0 }
-            to { width: 100% }
-        }
-        
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: var(--muted-mauve); }
-        }
-        
+
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 30px;
             line-height: 1.6;
-
         }
-        
-        
-
-           .btn1n {
+ .btn1n {
             display: inline-block;
             padding: 12px 30px;
             background-color: var(--muted-mauve);
@@ -321,6 +291,7 @@
     filter: blur(0);
 }
 
+
 .section-title h2::after {
     content: '';
     position: absolute;
@@ -380,21 +351,13 @@
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
     height: 400px;
 
+    /* Animation */
     opacity: 0;
-    transform: translateX(50px);   /* Reduced value for smoother animation */
-    transition: transform 0.5s ease, opacity 0.5s ease; /* More specific transitions */
-    will-change: transform, opacity;
+    transform: translateX(100px);
+    animation: slideRight 2s ease forwards;
 }
 
-.about-img.animate-img {
- animation: slideInRight 0.6s ease forwards;
-}
-
-@keyframes slideInRight {
-    from {
-        opacity: 0;
-        transform: translateX(100px);
-    }
+@keyframes slideRight {
     to {
         opacity: 1;
         transform: translateX(0);
@@ -413,7 +376,7 @@
             transform: scale(1.05);
         }
 
-        .about-content h3 {
+     .about-content h3 {
             font-family: 'Montserrat', sans-serif;
             font-size: 1.8rem;
             color: var(--deep-plum-alt);
@@ -654,15 +617,10 @@
             overflow: hidden;
             height: 250px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-           opacity: 0;
-        transform: translateX(100px);
-        transition: all 0.2s ease;
-         will-change: transform, opacity;
-         }
-          .gallery-item.animate-img {
-        animation: slideInFromLeft 0.8s ease-out forwards;
-           }
-         .gallery-item img {
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -902,12 +860,36 @@
         }
 
         /* Back to Top Button */
-       
+        .back-to-top {
+            position: fixed;
+            background-color: var(--muted-mauve);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--deep-plum-alt);
+            transform: translateY(-3px);
+        }
+
         /* Responsive Styles */
         @media (max-width: 992px) {
             .hero h1 {
-                  font-size: 2.5rem;
-                font-weight: 700;
+                font-size: 3rem;
             }
             
             .section-title h2 {
@@ -957,7 +939,6 @@
 
             .hero h1 {
                 font-size: 2.5rem;
-                font-weight: 700;
             }
 
             .about-container {
@@ -971,8 +952,7 @@
 
         @media (max-width: 576px) {
             .hero h1 {
-              font-size: 2.5rem;
-                font-weight: 700;
+                font-size: 2rem;
             }
 
             .section-title h2 {
@@ -1012,17 +992,15 @@
     .testimonials-container {
         position: relative;
         z-index: 1;
-       max-width: 100%;
-    padding: 0 20px;
-    overflow: hidden;
+        max-width: 1800px;
         margin: 0 auto;
-        
     }
     
     .section-title1 {
         text-align: center;
         margin-bottom: 60px;
     }
+    
     
     .section-title1 h2 {
         font-size: 2.5rem;
@@ -1058,10 +1036,10 @@
         display: flex;
         gap: 30px;
         scroll-snap-type: x mandatory;
+        overflow-x: auto;
         padding-bottom: 30px;
         scrollbar-width: none;
-        width: 100%;
-        overflow-x: auto;
+        overflow-x: visible;
     }
     
     .testimonial-slider::-webkit-scrollbar {
@@ -1080,14 +1058,7 @@
         border: 1px solid rgba(244, 207, 198, 0.2);
         position: relative;
         overflow: visible;
-            opacity: 0;
-    transform: translateX(-100px);
-
-     will-change: transform, opacity;
     }
-    .testimonial-card.animate-img {
-    animation: slideInFromLeft 0.8s ease-out forwards;
-}
     
     .testimonial-card::before {
         content: '';
@@ -1147,10 +1118,9 @@
     
     /* Animation Classes */
     .testimonial-card.active {
-        transform: scale(1.05);
+        transform: scale(1.1);
         background: rgba(255,255,255,0.15);
         box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-         z-index: 2; 
     }
  
 .testimonial-content {
@@ -1190,8 +1160,8 @@
     
     @media (max-width: 768px) {
         .testimonial-card {
-           flex: 0 0 calc(50% - 40px);
-        max-width: calc(50% - 40px);
+            flex: 0 0 100%;
+            margin-bottom: 20px;
         }
         
         .testimonial-slider {
@@ -1422,9 +1392,11 @@
         transform: translateY(20px);
     }
     
-    .stat-card.animate-img {
-    animation: slideInFromLeft 0.8s ease-out forwards;
-}
+    .stat-card.animate {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
     .stat-card:hover {
         transform: translateY(-8px) scale(1.02);
         background: rgba(255, 255, 255, 0.15);
@@ -1432,7 +1404,7 @@
     }
     
     .stat-number {
-       
+  
         font-size: 3.5rem;
         font-weight: 700;
         color: #F7D6CB;
@@ -1553,12 +1525,12 @@
     <section class="hero" id="home">
         <div id="particles-js"></div>
         <div class="hero-content">
-            <h1 id="animated-title">Manghal Dhwani Events</h1>
+            <h1 id ="animated-title">Manghal Dhwani Events</h1>
             <p>Creating unforgettable moments with impeccable planning and execution. We bring your vision to life with elegance and precision.</p>
             <a href="#services" class="btn1n">Our Services</a>
         </div>
     </section>
-<a href="#contact" class="floating-join-btn back-to-top">
+<a href="#contact" class="floating-join-btn">
     Contact Us <i class="fas fa-arrow-right"></i>
 </a>
 <a href="https://chat.whatsapp.com/" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
@@ -1567,7 +1539,7 @@
     </a>
     <!-- About Section -->
     <section class="about" id="about">
-        <div class="section-title" id="floating-title">
+        <div class="section-title">
             <h2>About Us</h2>
             <p>We are a premier event planning company dedicated to creating memorable experiences for all occasions.</p>
         </div>
@@ -1884,8 +1856,7 @@
 </section>
 
 
-    <!-- Contact Section -->
-<section class="contact" id="contact">
+ <section class="contact" id="contact">
     <div class="section-title">
         <h2>Contact Us</h2>
         <p>Get in touch with us to start planning your perfect event today.</p>
@@ -1987,9 +1958,7 @@
     </div>
 </section>
 
-
-    <!-- Footer -->
-    <footer>
+ <footer>
         <div class="footer-container">
             <div class="footer-col">
                 <h3>Manghal Dhwani</h3>
@@ -2082,9 +2051,9 @@
             });
         });
 
-     
         
-
+        
+     
         // Toggle Subservices
         // Updated JavaScript for Toggle Functionality
 const toggleButtons = document.querySelectorAll('.toggle-subservices');
@@ -2345,11 +2314,8 @@ const observer = new IntersectionObserver(entries => {
         }
     });
 }, {
-    threshold: 0.3 // triggers early even if a small part is visible
+    threshold: 0.1 // triggers early even if a small part is visible
 });
-document.querySelectorAll('.about-img').forEach(img => observer.observe(img));
-document.querySelectorAll('.gallery-item').forEach(img => observer.observe(img));
-document.querySelectorAll('.testimonial-card').forEach(img => observer.observe(img));
 
 serviceImages.forEach(img => {
     observer.observe(img);
@@ -2485,14 +2451,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 }
             });
-        }, { threshold: 0.3 });
+        }, { threshold: 0.1 });
 
         // Observe all animated elements
         document.querySelectorAll('.animate-elite-left, .animate-elite-right, .animate-elite-rise, .stat-card').forEach(el => {
             observer.observe(el);
         });
     });
-
+    
           document.addEventListener('DOMContentLoaded', function() {
             // Text sequences to display
             const textSequences = [
@@ -2553,8 +2519,6 @@ document.addEventListener("DOMContentLoaded", function () {
             // Start the animation after a brief delay
             setTimeout(typeWriter, 1000);
         });
-            document.addEventListener('DOMContentLoaded', function() {
-    // Function to animate section titles
  function animateSectionTitles() {
     const sectionTitles = document.querySelectorAll('.section-title h2,.section-title1 h2,.about-content h3');
 
@@ -2593,8 +2557,6 @@ document.addEventListener("DOMContentLoaded", function () {
 }
 
 animateSectionTitles();
-
-});
   </script>
   
 </body>

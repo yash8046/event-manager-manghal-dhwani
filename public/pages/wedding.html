@@ -6,6 +6,7 @@
     <title>Manghal Dhwani Events and Planners</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --deep-plum: #2D0B36;
@@ -30,7 +31,8 @@
             font-family: 'Poppins', sans-serif;
             background-color: var(--soft-cream);
             color: var(--charcoal);
-            overflow-x: hidden;
+           max-width: 100%;
+           overflow-x: hidden;
         }
 
         /* Particle Background */
@@ -43,24 +45,7 @@
             z-index: 0;
         }
 
-        /* Preloader */
-        .preloader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--deep-plum);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
-        }
-
-        .preloader.fade-out {
-            opacity: 0;
-        }
+    
 
         .shimmer {
             width: 200px;
@@ -101,7 +86,6 @@
         }
 
         .logo {
-            font-family: 'Playfair Display', serif;
             font-size: 28px;
             font-weight: 700;
             color: var(--blush-peach);
@@ -211,19 +195,47 @@
         }
 
         .hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
+            background-color: var(--blush-peach);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            display: inline-block;
+            font-size: 5rem;
+            font-weight: 700;
             margin-bottom: 20px;
-            color: var(--blush-peach);
         }
-
+  .typewriter {
+            overflow: hidden;
+            border-right: 3px solid var(--muted-mauve);
+            white-space: nowrap;
+            margin: 0 auto;
+            letter-spacing: 1px;
+            animation: 
+                typing 3.5s steps(40, end),
+                blink-caret .75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--muted-mauve); }
+        }
+        
         .hero p {
             font-size: 1.2rem;
             margin-bottom: 30px;
             line-height: 1.6;
-        }
 
-        .btn {
+        }
+        
+        
+
+           .btn1n {
             display: inline-block;
             padding: 12px 30px;
             background-color: var(--muted-mauve);
@@ -237,6 +249,37 @@
             text-decoration: none;
             box-shadow: 0 4px 15px rgba(166, 120, 153, 0.4);
         }
+       .btn {
+    opacity: 0;
+    transform: translateY(30px); /* slightly more offset for a fluid motion */
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: var(--muted-mauve);
+    color: var(--soft-cream); 
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.4s ease;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(166, 120, 153, 0.4);
+    animation: fadeUp 0.9s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation-delay: 1.3s;
+    animation-play-state: paused;
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 
         .btn:hover {
             background: linear-gradient(to right, var(--muted-mauve), var(--blush-peach-alt));
@@ -250,32 +293,63 @@
             position: relative;
         }
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-            position: relative;
+      .section-title {
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+}
+.section-title h2 {
+    font-size: 2.8rem;
+    color: var(--deep-plum);
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
 
-        }
+.section-title h2 span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(50px) rotate(10deg);
+    filter: blur(3px);
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
 
-        .section-title h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            color: var(--deep-plum);
-            margin-bottom: 15px;
-            position: relative;
-            display: inline-block;
-        }
+.section-title h2 span.animate {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+    filter: blur(0);
+}
 
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            width: 60px;
-            height: 3px;
-            background: var(--muted-mauve);
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
+.section-title h2::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 3px;
+    background: var(--muted-mauve);
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Title animation effect */
+.section-title h2::before {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    color: var(--muted-mauve);
+    z-index: -1;
+    transform: translateX(-100%);
+    animation: slideInShadow 2s forwards ease-out;
+}
+
+@keyframes slideInShadow {
+    to {
+        transform: translateX(0);
+    }
+}
 
         .section-title p {
             color: var(--charcoal-alt);
@@ -299,13 +373,34 @@
             align-items: center;
         }
 
-        .about-img {
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            height: 400px;
-        }
+ .about-img {
+    position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    height: 400px;
+
+    opacity: 0;
+    transform: translateX(50px);   /* Reduced value for smoother animation */
+    transition: transform 0.5s ease, opacity 0.5s ease; /* More specific transitions */
+    will-change: transform, opacity;
+}
+
+.about-img.animate-img {
+ animation: slideInRight 0.6s ease forwards;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 
         .about-img img {
             width: 100%;
@@ -325,11 +420,41 @@
             margin-bottom: 20px;
         }
 
-        .about-content p {
-            margin-bottom: 15px;
-            line-height: 1.8;
-            color: var(--charcoal);
-        }
+.about-content h3 span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(50px) rotate(10deg);
+    filter: blur(3px);
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.about-content h3 span.animate {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+    filter: blur(0);
+}
+      .about-content p {
+    margin-bottom: 15px;
+    line-height: 1.8;
+    color: var(--charcoal);
+    opacity: 0;
+    transform: translateX(-40px);
+    animation: revealLeft 1s forwards ease-out;
+    animation-delay: var(--delay);
+    animation-play-state: paused;
+}
+
+/* Delays for staggered reveal */
+.about-content p:nth-child(2) { --delay: 0.3s; }
+.about-content p:nth-child(3) { --delay: 0.6s; }
+.about-content p:nth-child(4) { --delay: 0.9s; }
+
+@keyframes revealLeft {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
 
         /* Services Section */
         .services {
@@ -347,16 +472,22 @@
             gap: 30px;
         }
 
-        .service-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            position: relative;
-            opacity: 0;
-            transform: translateY(20px);
-        }
+
+      .service-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.animate-card {
+    animation: slideInFromLeft 0.8s ease-out forwards;
+}
+
 
         .service-card.animate {
             opacity: 1;
@@ -374,16 +505,34 @@
             overflow: hidden;
         }
 
-        .service-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
+
+
+.service-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    opacity: 0; /* Start hidden */
+}
+
+.animate-img {
+    animation: slideInFromLeft 0.8s ease-out forwards;
+}
+
 
         .service-card:hover .service-img img {
             transform: scale(1.1);
         }
+@keyframes slideInFromLeft {
+    0% {
+        transform: translateX(-100%) scale(1);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0) scale(1);
+        opacity: 1;
+    }
+}
 
         .service-content {
             padding: 25px;
@@ -505,10 +654,15 @@
             overflow: hidden;
             height: 250px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .gallery-item img {
+           opacity: 0;
+        transform: translateX(100px);
+        transition: all 0.2s ease;
+         will-change: transform, opacity;
+         }
+          .gallery-item.animate-img {
+        animation: slideInFromLeft 0.8s ease-out forwards;
+           }
+         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -626,6 +780,7 @@
             color: white;
             border-radius: 50%;
             transition: all 0.3s ease;
+            text-decoration: none;
         }
 
         .social-link:hover {
@@ -676,6 +831,7 @@
             color: white;
             padding: 60px 20px 20px;
             position: relative;
+            text-decoration: none;
         }
 
         .footer-container {
@@ -685,6 +841,7 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 40px;
             margin-bottom: 40px;
+            text-decoration: none;
         }
 
         .footer-col h3 {
@@ -694,6 +851,7 @@
             color: var(--blush-peach);
             position: relative;
             padding-bottom: 10px;
+            text-decoration: none;
         }
 
         .footer-col h3::after {
@@ -704,12 +862,14 @@
             width: 40px;
             height: 2px;
             background: var(--muted-mauve);
+            text-decoration: none;
         }
 
         .footer-col p {
             margin-bottom: 15px;
             line-height: 1.6;
             color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
         }
 
         .footer-links {
@@ -738,43 +898,16 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: rgba(255, 255, 255, 0.5);
             font-size: 0.9rem;
+            text-decoration: none;
         }
 
         /* Back to Top Button */
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background-color: var(--muted-mauve);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
-            z-index: 999;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .back-to-top.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .back-to-top:hover {
-            background-color: var(--deep-plum-alt);
-            transform: translateY(-3px);
-        }
-
+       
         /* Responsive Styles */
         @media (max-width: 992px) {
             .hero h1 {
-                font-size: 3rem;
+                  font-size: 2.5rem;
+                font-weight: 700;
             }
             
             .section-title h2 {
@@ -824,6 +957,7 @@
 
             .hero h1 {
                 font-size: 2.5rem;
+                font-weight: 700;
             }
 
             .about-container {
@@ -837,7 +971,8 @@
 
         @media (max-width: 576px) {
             .hero h1 {
-                font-size: 2rem;
+              font-size: 2.5rem;
+                font-weight: 700;
             }
 
             .section-title h2 {
@@ -877,8 +1012,11 @@
     .testimonials-container {
         position: relative;
         z-index: 1;
-        max-width: 1800px;
+       max-width: 100%;
+    padding: 0 20px;
+    overflow: hidden;
         margin: 0 auto;
+        
     }
     
     .section-title1 {
@@ -887,12 +1025,26 @@
     }
     
     .section-title1 h2 {
-        font-family: 'Playfair Display', serif;
         font-size: 2.5rem;
         color: #F7D6CB;
         margin-bottom: 15px;
+
         
     }
+    
+.section-title1 h2 span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(50px) rotate(10deg);
+    filter: blur(3px);
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.section-title1 h2 span.animate {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+    filter: blur(0);
+}
     
     .section-title1 p {
         color: rgba(255,255,255,0.7);
@@ -906,10 +1058,10 @@
         display: flex;
         gap: 30px;
         scroll-snap-type: x mandatory;
-        overflow-x: auto;
         padding-bottom: 30px;
         scrollbar-width: none;
-        overflow-x: visible;
+        width: 100%;
+        overflow-x: auto;
     }
     
     .testimonial-slider::-webkit-scrollbar {
@@ -928,7 +1080,14 @@
         border: 1px solid rgba(244, 207, 198, 0.2);
         position: relative;
         overflow: visible;
+            opacity: 0;
+    transform: translateX(-100px);
+
+     will-change: transform, opacity;
     }
+    .testimonial-card.animate-img {
+    animation: slideInFromLeft 0.8s ease-out forwards;
+}
     
     .testimonial-card::before {
         content: '';
@@ -991,7 +1150,36 @@
         transform: scale(1.05);
         background: rgba(255,255,255,0.15);
         box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+         z-index: 2; 
     }
+ 
+.testimonial-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.quote-stars {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.quote-icon {
+  font-size: 2.5rem;
+  color: #A67899; /* Mauve */
+  line-height: 1;
+}
+
+.testimonial-stars {
+  color: #FFD700; /* Golden stars */
+  font-size: 1.6rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+
     
     /* Responsive Styles */
     @media (max-width: 992px) {
@@ -1002,8 +1190,8 @@
     
     @media (max-width: 768px) {
         .testimonial-card {
-            flex: 0 0 100%;
-            margin-bottom: 20px;
+           flex: 0 0 calc(50% - 40px);
+        max-width: calc(50% - 40px);
         }
         
         .testimonial-slider {
@@ -1021,21 +1209,327 @@
         pointer-events: none;
         
     }
+.floating-join-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 24px;
+    background-color: var(--muted-mauve);/* Vibrant orange - change to your brand color */
+    color: white;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+.floating-join-btn i {
+    transition: transform 0.3s ease;
+}
+
+.floating-join-btn:hover {
+    background-color: var(--muted-mauve-alt); /* Slightly darker on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.floating-join-btn:hover i {
+    transform: translateX(3px);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 767px) {
+    .floating-join-btn {
+        padding: 10px 20px;
+        font-size: 14px;
+        bottom: 15px;
+        right: 15px;
+    }
+}
+.whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            left: 40px; /* Changed from right to left */
+            background-color: #25D366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            transition: all 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: pulse 2s infinite;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .whatsapp-float::after {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid #25D366;
+            border-radius: 50%;
+            animation: ring 2s infinite;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .whatsapp-float:hover::after {
+            animation: none;
+        }
+
+        .whatsapp-float i {
+            margin-top: 2px;
+        }
+
+        /* Tooltip - now positioned to the right of the icon */
+        .whatsapp-tooltip {
+            position: absolute;
+            left: 70px; /* Changed from right to left */
+            top: 50%;
+            transform: translateY(-50%);
+            background: #333;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-tooltip::after {
+            content: "";
+            position: absolute;
+            right: 100%; /* Changed from left to right */
+            top: 50%;
+            transform: translateY(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent #333 transparent transparent; /* Adjusted arrow direction */
+        }
+
+        .whatsapp-float:hover .whatsapp-tooltip {
+            opacity: 1;
+            visibility: visible;
+            left: 75px; /* Changed from right to left */
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(191, 37, 211, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        @keyframes ring {
+            0% {
+                transform: scale(0.8);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(1.3);
+                opacity: 0;
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                left: 20px; /* Changed from right to left */
+                font-size: 25px;
+            }
+            
+            .whatsapp-tooltip {
+                display: none;
+            }
+        }
+.stats {
+        position: relative;
+        padding: 100px 20px;
+        background: linear-gradient(135deg, #3B0A47 0%, #2D0B36 100%);
+        overflow: hidden;
+        color: white;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    
+    .particle-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        opacity: 0.6;
+    }
+    
+    .stats-container {
+        position: relative;
+        z-index: 1;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    
+    .stats-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        margin-bottom: 30px;
+    }
+    
+    .stat-card {
+        flex: 1 1 300px;
+        max-width: 350px;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(8px);
+        border-radius: 16px;
+        padding: 40px 25px;
+        text-align: center;
+        border: 1px solid rgba(244, 207, 198, 0.15);
+        transition: all 0.4s ease;
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    
+    .stat-card.animate-img {
+    animation: slideInFromLeft 0.8s ease-out forwards;
+}
+    .stat-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    }
+    
+    .stat-number {
+       
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: #F7D6CB;
+        margin-bottom: 8px;
+        line-height: 1;
+        letter-spacing: 1px;
+    }
+    
+    .stat-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-bottom: 12px;
+        color: white;
+        letter-spacing: 0.5px;
+    }
+    
+    .stat-desc {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1rem;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.85);
+        margin-bottom: 20px;
+        font-weight: 300;
+    }
+    
+    .stat-icon {
+        font-size: 2rem;
+        color: #B58DAE;
+        margin-top: 15px;
+        transition: all 0.3s ease;
+    }
+    
+    .stat-card:hover .stat-icon {
+        transform: scale(1.2);
+        color: #F4CFC6;
+    }
+    
+    /* Animations */
+    @keyframes eliteEnterFromLeft {
+        0% { transform: translateX(-50px) scale(0.9); opacity: 0; }
+        100% { transform: translateX(0) scale(1); opacity: 1; }
+    }
+    
+    @keyframes eliteEnterFromRight {
+        0% { transform: translateX(50px) scale(0.9); opacity: 0; }
+        100% { transform: translateX(0) scale(1); opacity: 1; }
+    }
+    
+    @keyframes eliteRiseFromBottom {
+        0% { transform: translateY(40px) scale(0.95); opacity: 0; }
+        100% { transform: translateY(0) scale(1); opacity: 1; }
+    }
+    
+    .animate-elite-left.animate {
+        animation: eliteEnterFromLeft 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    
+    .animate-elite-right.animate {
+        animation: eliteEnterFromRight 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    
+    .animate-elite-rise.animate {
+        animation: eliteRiseFromBottom 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+    
+    /* Responsive */
+    @media (max-width: 992px) {
+        .stat-card {
+            flex: 1 1 45%;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .stats-row {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .stat-card {
+            flex: 1 1 100%;
+            max-width: 100%;
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+        }
+    }
     </style>
 </head>
 <body>
   <div id="root"></div>
 
-    <!-- Preloader -->
-    <div class="preloader">
-        <div class="shimmer"></div>
-    </div>
-
-    <!-- Header -->
     <header id="header">
       <div class="header-container">
           <a href="#" class="logo">
-              <img src="../images/logo.png" alt="Manghal Dhwani Logo" class="logo-img">
+              <img src="images/logo.png" alt="Manghal Dhwani Logo" class="logo-img">
               Manghal <span>Dhwani</span>
           </a>
             <nav>
@@ -1059,15 +1553,21 @@
     <section class="hero" id="home">
         <div id="particles-js"></div>
         <div class="hero-content">
-            <h1>Manghal Dhwani Events</h1>
+            <h1 id="animated-title">Manghal Dhwani Events</h1>
             <p>Creating unforgettable moments with impeccable planning and execution. We bring your vision to life with elegance and precision.</p>
-            <a href="#contact" class="btn">Get in Touch</a>
+            <a href="#services" class="btn1n">Our Services</a>
         </div>
     </section>
-
+<a href="#contact" class="floating-join-btn back-to-top">
+    Contact Us <i class="fas fa-arrow-right"></i>
+</a>
+<a href="https://chat.whatsapp.com/" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-tooltip">Chat with us on WhatsApp</span>
+    </a>
     <!-- About Section -->
     <section class="about" id="about">
-        <div class="section-title">
+        <div class="section-title" id="floating-title">
             <h2>About Us</h2>
             <p>We are a premier event planning company dedicated to creating memorable experiences for all occasions.</p>
         </div>
@@ -1131,7 +1631,7 @@
                 </div>
 
                 <!-- MICE Events -->
-                <div class="service-card" data-delay="300">
+                <div class="service-card" data-delay="0">
                     <div class="service-img">
                         <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="MICE Events" class="lazy" loading="lazy">
                     </div>
@@ -1143,7 +1643,7 @@
                 </div>
 
                 <!-- Movie Events -->
-                <div class="service-card" data-delay="400">
+                <div class="service-card" data-delay="100">
                     <div class="service-img">
                         <img src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Movie Events" class="lazy" loading="lazy">
                     </div>
@@ -1155,7 +1655,7 @@
                 </div>
 
                 <!-- Concerts -->
-                <div class="service-card" data-delay="500">
+                <div class="service-card" data-delay="200">
                     <div class="service-img">
                         <img src="https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Concerts" class="lazy" loading="lazy">
                     </div>
@@ -1168,6 +1668,75 @@
             </div>
         </div>
     </section>
+<section class="stats" id="stats">
+    <div class="particle-bg" id="stats-particles"></div>
+    <div class="section-title1 animate-elite-rise">
+        <h2>Our Impact in Numbers</h2>
+        <p>Years of creating unforgettable moments, quantified</p>
+    </div>
+    
+    <div class="stats-container">
+        <!-- Row 1 -->
+        <div class="stats-row">
+            <div class="stat-card animate-elite-left" data-delay="0">
+                <div class="stat-number" data-count="500">0</div>
+                <div class="stat-title">Weddings Planned</div>
+                <div class="stat-desc">From intimate gatherings to grand destination weddings in Udaipur & Goa</div>
+                <div class="stat-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+            </div>
+            
+            <div class="stat-card animate-elite-rise" data-delay="100">
+                <div class="stat-number" data-count="300">0</div>
+                <div class="stat-title">Corporate Events</div>
+                <div class="stat-desc">Product launches, award nights & annual corporate galas</div>
+                <div class="stat-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+            </div>
+            
+            <div class="stat-card animate-elite-right" data-delay="200">
+                <div class="stat-number" data-count="200">0</div>
+                <div class="stat-title">Birthday Parties</div>
+                <div class="stat-desc">From Barbie-themed birthdays to retro Bollywood nights</div>
+                <div class="stat-icon">
+                    <i class="fas fa-birthday-cake"></i>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Row 2 -->
+        <div class="stats-row">
+            <div class="stat-card animate-elite-left" data-delay="300">
+                <div class="stat-number" data-count="50000">0+</div>
+                <div class="stat-title">Happy Guests</div>
+                <div class="stat-desc">Catering, décor & entertainment for over 50,000 smiling faces</div>
+                <div class="stat-icon">
+                    <i class="fas fa-smile-beam"></i>
+                </div>
+            </div>
+            
+            <div class="stat-card animate-elite-rise" data-delay="400">
+                <div class="stat-number" data-count="95">0%</div>
+                <div class="stat-title">Client Retention</div>
+                <div class="stat-desc">Most of our clients come back for multiple events</div>
+                <div class="stat-icon">
+                    <i class="fas fa-redo"></i>
+                </div>
+            </div>
+            
+            <div class="stat-card animate-elite-right" data-delay="500">
+                <div class="stat-number" data-count="30">0+</div>
+                <div class="stat-title">Celebrity Performances</div>
+                <div class="stat-desc">Featuring stars like Neha Kakkar, Badshah, and prominent DJs</div>
+                <div class="stat-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Gallery Section -->
     <section class="gallery" id="gallery">
@@ -1228,176 +1797,196 @@
             </div>
         </div>
     </section>
-    <section class="testimonials" id="testimonials">
-      <div class="testimonial-particles" id="testimonial-particles"></div>
-      <div class="testimonials-container">
-          <div class="section-title1">
-              <h2>Client Testimonials</h2>
-              <p>Hear what our clients say about their unforgettable experiences with Manghal Dhwani Events</p>
+ <section class="testimonials" id="testimonials">
+  <div class="testimonial-particles" id="testimonial-particles"></div>
+  <div class="testimonials-container">
+    <div class="section-title1">
+      <h2>Client Testimonials</h2>
+      <p>Hear what our clients say about their unforgettable experiences with Manghal Dhwani Events</p>
+    </div>
+
+    <div class="testimonial-slider">
+
+      <!-- Testimonial 1 -->
+      <div class="testimonial-card active">
+        <div class="testimonial-content">
+          <div class="quote-stars">
+            <div class="quote-icon">"</div>
+            <div class="testimonial-stars">★★★★★</div>
           </div>
-          
-          <div class="testimonial-slider">
-              <!-- Testimonial 1 -->
-              <div class="testimonial-card active">
-                  <div class="testimonial-content">
-                      <div class="quote-icon">"</div>
-                      <p class="testimonial-text">Manghal Dhwani transformed our wedding into a magical experience. Their attention to detail and flawless execution made our special day absolutely perfect. The decor, music, and coordination were beyond our expectations!</p>
-                      <div class="client-info">
-                          <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Priya Sharma" class="client-avatar">
-                          <div class="client-details">
-                              <h4>Priya Sharma</h4>
-                              <p>Wedding Client, Delhi</p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              
-              <!-- Testimonial 2 -->
-              <div class="testimonial-card">
-                  <div class="testimonial-content">
-                      <div class="quote-icon">"</div>
-                      <p class="testimonial-text">The corporate gala they organized for us received rave reviews from all attendees. Their team handled everything from venue selection to entertainment seamlessly. Truly professional event planners!</p>
-                      <div class="client-info">
-                          <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Rahul Mehta" class="client-avatar">
-                          <div class="client-details">
-                              <h4>Rahul Mehta</h4>
-                              <p>Corporate Client, Mumbai</p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              
-              <!-- Testimonial 3 -->
-              <div class="testimonial-card">
-                  <div class="testimonial-content">
-                      <div class="quote-icon">"</div>
-                      <p class="testimonial-text">Our daughter's birthday party was a fairy tale come true! The themed decorations, activities, and catering were exceptional. The children haven't stopped talking about it. Worth every penny!</p>
-                      <div class="client-info">
-                          <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Anjali Patel" class="client-avatar">
-                          <div class="client-details">
-                              <h4>Anjali Patel</h4>
-                              <p>Birthday Party, Bangalore</p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-              
-              <!-- Testimonial 4 -->
-              <div class="testimonial-card">
-                  <div class="testimonial-content">
-                      <div class="quote-icon">"</div>
-                      <p class="testimonial-text">The exhibition they managed for our product launch was spectacular. They understood our brand perfectly and created an immersive experience that wowed our clients and partners alike.</p>
-                      <div class="client-info">
-                          <img src="https://randomuser.me/api/portraits/men/72.jpg" alt="Vikram Singh" class="client-avatar">
-                          <div class="client-details">
-                              <h4>Vikram Singh</h4>
-                              <p>Product Launch, Hyderabad</p>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+          <p class="testimonial-text">Manghal Dhwani transformed our wedding into a magical experience. Their attention to detail and flawless execution made our special day absolutely perfect. The decor, music, and coordination were beyond our expectations!</p>
+          <div class="client-info">
+            <img src="images/people-9.jpg" alt="Priya Sharma" class="client-avatar">
+            <div class="client-details">
+              <h4>Priya Sharma</h4>
+              <p>Wedding Client, Delhi</p>
+            </div>
           </div>
-      </div>
-  </section>
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="section-title">
-            <h2>Contact Us</h2>
-            <p>Get in touch with us to start planning your perfect event today.</p>
         </div>
-        <div class="contact-container">
-            <div class="contact-info">
-                <h3>Contact Information</h3>
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Address</h4>
-                            <p>123 Event Street, Celebration City, EC 12345</p>
-                        </div>
+      </div>
+
+      <!-- Testimonial 2 -->
+      <div class="testimonial-card">
+        <div class="testimonial-content">
+          <div class="quote-stars">
+            <div class="quote-icon">"</div>
+            <div class="testimonial-stars">★★★★★</div>
+          </div>
+          <p class="testimonial-text">The corporate gala they organized for us received rave reviews from all attendees. Their team handled everything from venue selection to entertainment seamlessly. Truly professional event planners!</p>
+          <div class="client-info">
+            <img src="images/people-2.jpg" alt="Rahul Mehta" class="client-avatar">
+            <div class="client-details">
+              <h4>Rahul Mehta</h4>
+              <p>Corporate Client, Mumbai</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 3 -->
+      <div class="testimonial-card">
+        <div class="testimonial-content">
+          <div class="quote-stars">
+            <div class="quote-icon">"</div>
+            <div class="testimonial-stars">★★★★★</div>
+          </div>
+          <p class="testimonial-text">Our daughter's birthday party was a fairy tale come true! The themed decorations, activities, and catering were exceptional. The children haven't stopped talking about it. Worth every penny!</p>
+          <div class="client-info">
+            <img src="images/people-7.jpg" alt="Anjali Patel" class="client-avatar">
+            <div class="client-details">
+              <h4>Anjali Patel</h4>
+              <p>Birthday Party, Bangalore</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonial 4 -->
+      <div class="testimonial-card">
+        <div class="testimonial-content">
+          <div class="quote-stars">
+            <div class="quote-icon">"</div>
+            <div class="testimonial-stars">★★★★★</div>
+          </div>
+          <p class="testimonial-text">The exhibition they managed for our product launch was spectacular. They understood our brand perfectly and created an immersive experience that wowed our clients and partners alike.</p>
+          <div class="client-info">
+            <img src="images/people-1.jpg" alt="Vikram Singh" class="client-avatar">
+            <div class="client-details">
+              <h4>Vikram Singh</h4>
+              <p>Product Launch, Hyderabad</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+    <!-- Contact Section -->
+<section class="contact" id="contact">
+    <div class="section-title">
+        <h2>Contact Us</h2>
+        <p>Get in touch with us to start planning your perfect event today.</p>
+    </div>
+    <div class="contact-container">
+        <!-- FORM FIRST NOW -->
+        <div class="contact-form">
+            <form id="eventForm" action="https://script.google.com/macros/s/AKfycbx1uZW631R7sPZqYG0ibRlsGHKfvKjbPLQ2IJJkgzg-8AN0nWzUAyKCmzA3OUTLv8nELQ/exec" method="POST">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="user_name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="user_email" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="user_phone" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventType">Event Type</label>
+                    <select id="eventType" name="event_type" class="form-control" required>
+                        <option value="">Select Event Type</option>
+                        <option value="wedding">Wedding</option>
+                        <option value="social">Social Event</option>
+                        <option value="corporate">Corporate Event</option>
+                        <option value="mice">MICE Event</option>
+                        <option value="movie">Movie Event</option>
+                        <option value="concert">Concert</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" class="form-control" required></textarea>
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+
+        <!-- CONTACT INFO SECOND NOW -->
+        <div class="contact-info">
+            <h3>Contact Information</h3>
+            <div class="contact-details">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
                     </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Phone</h4>
-                            <a href="tel:+919876543210">+91 98765 43210</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Email</h4>
-                            <a href="mailto:info@manghaldhwani.com">info@manghaldhwani.com</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fab fa-whatsapp"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>WhatsApp</h4>
-                            <a href="https://wa.me/919876543210">+91 98765 43210</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fab fa-instagram"></i>
-                        </div>
-                        <div class="contact-text">
-                            <h4>Instagram</h4>
-                            <a href="https://instagram.com/manghaldhwani" target="_blank">@manghaldhwani</a>
-                        </div>
+                    <div class="contact-text">
+                        <h4>Address</h4>
+                        <p>123 Event Street, Celebration City, EC 12345</p>
                     </div>
                 </div>
-                <h3>Follow Us</h3>
-                <div class="social-links">
-                    <a href="https://facebook.com/manghaldhwani" class="social-link" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://instagram.com/manghaldhwani" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://twitter.com/manghaldhwani" class="social-link" target="_blank"><i class="fab fa-twitter"></i></a>
-                    <a href="https://pinterest.com/manghaldhwani" class="social-link" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>Phone</h4>
+                        <a href="tel:+919876543210">+91 98765 43210</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>Email</h4>
+                        <a href="mailto:info@manghaldhwani.com">info@manghaldhwani.com</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>WhatsApp</h4>
+                        <a href="https://wa.me/919876543210">+91 98765 43210</a>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <div class="contact-text">
+                        <h4>Instagram</h4>
+                        <a href="https://instagram.com/manghaldhwani" target="_blank">@manghaldhwani</a>
+                    </div>
                 </div>
             </div>
-            <div class="contact-form">
-    <form id="eventForm"action="https://script.google.com/macros/s/AKfycbx1uZW631R7sPZqYG0ibRlsGHKfvKjbPLQ2IJJkgzg-8AN0nWzUAyKCmzA3OUTLv8nELQ/exec" method="POST">
-        <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" id="name" name="user_name" class="form-control" required>
+            <h3>Follow Us</h3>
+            <div class="social-links">
+                <a href="https://facebook.com/manghaldhwani" class="social-link" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://instagram.com/manghaldhwani" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://twitter.com/manghaldhwani" class="social-link" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://pinterest.com/manghaldhwani" class="social-link" target="_blank"><i class="fab fa-pinterest-p"></i></a>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="user_email" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="user_phone" class="form-control" required>
-        </div>
-        <div class="form-group">
-            <label for="eventType">Event Type</label>
-            <select id="eventType" name="event_type" class="form-control" required>
-                <option value="">Select Event Type</option>
-                <option value="wedding">Wedding</option>
-                <option value="social">Social Event</option>
-                <option value="corporate">Corporate Event</option>
-                <option value="mice">MICE Event</option>
-                <option value="movie">Movie Event</option>
-                <option value="concert">Concert</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="message">Your Message</label>
-            <textarea id="message" name="message" class="form-control" required></textarea>
-        </div>
-        <button type="submit" class="btn">Send Message</button>
-    </form>
-</div>
-        </div>
-    </section>
+    </div>
+</section>
+
 
     <!-- Footer -->
     <footer>
@@ -1445,25 +2034,13 @@
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <div class="back-to-top">
-        <i class="fas fa-arrow-up"></i>
-    </div>
+
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
-        // Preloader
-        window.addEventListener('load', function() {
-            const preloader = document.querySelector('.preloader');
-            setTimeout(() => {
-                preloader.classList.add('fade-out');
-                setTimeout(() => {
-                    preloader.style.display = 'none';
-                }, 500);
-            }, 1000);
-        });
-
+      
+       
         // Mobile Menu Toggle
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
@@ -1505,23 +2082,8 @@
             });
         });
 
-        // Back to Top Button
-        const backToTopBtn = document.querySelector('.back-to-top');
+     
         
-        window.addEventListener('scroll', function() {
-            if (window.pageYOffset > 300) {
-                backToTopBtn.classList.add('active');
-            } else {
-                backToTopBtn.classList.remove('active');
-            }
-        });
-        
-        backToTopBtn.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
 
         // Toggle Subservices
         // Updated JavaScript for Toggle Functionality
@@ -1558,25 +2120,26 @@ toggleButtons.forEach(button => {
         }
     });
 });
-        // Animate Service Cards on Scroll
-        const serviceCards = document.querySelectorAll('.service-card');
-        
-        function animateCards() {
-            serviceCards.forEach(card => {
-                const cardPosition = card.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.3;
-                
-                if (cardPosition < screenPosition) {
-                    const delay = card.getAttribute('data-delay') || 0;
-                    setTimeout(() => {
-                        card.classList.add('animate');
-                    }, delay);
-                }
-            });
+// Animate Service Cards on Scroll
+const serviceCards = document.querySelectorAll('.service-card');
+
+function animateCards() {
+    serviceCards.forEach(card => {
+        const cardPosition = card.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight * 0.8;
+
+        if (cardPosition < screenPosition && !card.classList.contains('animate')) {
+            const delay = parseInt(card.getAttribute('data-delay')) || 0;
+            setTimeout(() => {
+                card.classList.add('animate-card');
+            }, delay);
         }
-        
-        window.addEventListener('load', animateCards);
-        window.addEventListener('scroll', animateCards);
+    });
+}
+
+window.addEventListener('load', animateCards);
+window.addEventListener('scroll', animateCards);
+
 
         // Lazy Loading Images
         const lazyImages = document.querySelectorAll('img.lazy');
@@ -1717,7 +2280,7 @@ toggleButtons.forEach(button => {
               activateTestimonial(nextIndex);
           }
   
-          setInterval(rotateTestimonials, 3500);
+          setInterval(rotateTestimonials, 2000);
   
           // Allow manual click to activate testimonial
           testimonials.forEach((testimonial, index) => {
@@ -1772,6 +2335,266 @@ toggleButtons.forEach(button => {
   
           createTestimonialParticles();
       });
+     const serviceImages = document.querySelectorAll('.service-img');
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animate-img');
+            observer.unobserve(entry.target); // Animate once
+        }
+    });
+}, {
+    threshold: 0.3 // triggers early even if a small part is visible
+});
+document.querySelectorAll('.about-img').forEach(img => observer.observe(img));
+document.querySelectorAll('.gallery-item').forEach(img => observer.observe(img));
+document.querySelectorAll('.testimonial-card').forEach(img => observer.observe(img));
+
+serviceImages.forEach(img => {
+    observer.observe(img);
+});
+document.addEventListener("DOMContentLoaded", function () {
+    const section = document.querySelector(".about-content");
+    const animatedElements = section.querySelectorAll("p, .btn");
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animatedElements.forEach(el => el.style.animationPlayState = 'running');
+            }
+        });
+    }, { threshold: 0.2 });
+
+    observer.observe(section);
+});
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize particles
+        if (document.getElementById('stats-particles')) {
+            particlesJS('stats-particles', {
+                "particles": {
+    "number": {
+      "value": 60,
+      "density": {
+        "enable": true,
+        "value_area": 1000
+      }
+    },
+    "color": {
+      "value": ["#CFAE90", "#A67899", "#F7D6CB"] // Gold, Mauve, Peach
+    },
+    "shape": {
+      "type": "polygon",
+      "polygon": {
+        "nb_sides": 6
+      },
+      "stroke": {
+        "width": 0,
+        "color": "#000000"
+      }
+      // OR Use small mandala PNG:
+      // "type": "image",
+      // "image": {
+      //   "src": "path/to/mandala.png",
+      //   "width": 100,
+      //   "height": 100
+      // }
+    },
+    "opacity": {
+      "value": 0.4,
+      "random": true
+    },
+    "size": {
+      "value": 6,
+      "random": true
+    },
+    "line_linked": {
+      "enable": false
+    },
+    "move": {
+      "enable": true,
+      "speed": 0.8,
+      "direction": "none",
+      "random": true,
+      "straight": false,
+      "out_mode": "out",
+      "bounce": false
+    }
+  },
+  "interactivity": {
+    "detect_on": "canvas",
+    "events": {
+      "onhover": {
+        "enable": true,
+        "mode": "bubble"
+      },
+      "onclick": {
+        "enable": true,
+        "mode": "repulse"
+      },
+      "resize": true
+    },
+    "modes": {
+      "bubble": {
+        "distance": 200,
+        "size": 10,
+        "duration": 2,
+        "opacity": 0.6,
+        "speed": 5
+      },
+      "repulse": {
+        "distance": 150,
+        "duration": 0.4
+      }
+    }
+  },
+  "retina_detect": true
+            });
+        }
+
+        // Animate stats counting
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            const speed = 200;
+            
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-count');
+                const count = +counter.innerText.replace(/\D/g, '');
+                const increment = target / speed;
+                
+                if (count < target) {
+                    counter.innerText = counter.innerText.includes('%') 
+                        ? Math.ceil(count + increment) + '%'
+                        : Math.ceil(count + increment) + '+';
+                    setTimeout(animateCounters, 1);
+                }
+            });
+        }
+
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    if (entry.target.classList.contains('stat-card')) {
+                        const delay = entry.target.getAttribute('data-delay') || 0;
+                        entry.target.style.animationDelay = `${delay}ms`;
+                        setTimeout(animateCounters, delay + 300);
+                    }
+                }
+            });
+        }, { threshold: 0.3 });
+
+        // Observe all animated elements
+        document.querySelectorAll('.animate-elite-left, .animate-elite-right, .animate-elite-rise, .stat-card').forEach(el => {
+            observer.observe(el);
+        });
+    });
+
+          document.addEventListener('DOMContentLoaded', function() {
+            // Text sequences to display
+            const textSequences = [
+               "Manghal Dhwani Events",
+                "Wedding Planning",
+                "Corporate Events",
+                "Social Gatherings",
+                "Movie Events",
+                "MICE Events",
+                "Concerts"
+                
+            ];
+            
+            const titleElement = document.getElementById('animated-title');
+            let sequenceIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            let typingSpeed = 100;
+            let pauseBetweenTexts = 2000;
+            
+            function typeWriter() {
+                const currentText = textSequences[sequenceIndex];
+                
+                if (isDeleting) {
+                    // Deleting characters
+                    titleElement.textContent = currentText.substring(0, charIndex - 1);
+                    charIndex--;
+                    typingSpeed = 50; // Faster when deleting
+                } else {
+                    // Adding characters
+                    titleElement.textContent = currentText.substring(0, charIndex + 1);
+                    charIndex++;
+                    typingSpeed = 100; // Normal speed when typing
+                }
+                
+                // When current text is complete
+                if (!isDeleting && charIndex === currentText.length) {
+                    // Pause at end of text
+                    typingSpeed = pauseBetweenTexts;
+                    isDeleting = true;
+                } else if (isDeleting && charIndex === 0) {
+                    // Move to next text
+                    isDeleting = false;
+                    sequenceIndex = (sequenceIndex + 1) % textSequences.length;
+                    typingSpeed = 500; // Pause before starting next text
+                }
+                
+                // Add/remove typewriter class for cursor effect
+                if (!isDeleting && charIndex < currentText.length) {
+                    titleElement.classList.add('typewriter');
+                } else {
+                    titleElement.classList.remove('typewriter');
+                }
+                
+                setTimeout(typeWriter, typingSpeed);
+            }
+            
+            // Start the animation after a brief delay
+            setTimeout(typeWriter, 1000);
+        });
+            document.addEventListener('DOMContentLoaded', function() {
+    // Function to animate section titles
+ function animateSectionTitles() {
+    const sectionTitles = document.querySelectorAll('.section-title h2,.section-title1 h2,.about-content h3');
+
+    sectionTitles.forEach(title => {
+        const text = title.textContent;
+        title.innerHTML = '';
+
+        for (let i = 0; i < text.length; i++) {
+            const char = text[i];
+            const span = document.createElement('span');
+
+            // Preserve spaces
+            if (char === ' ') {
+                span.innerHTML = '&nbsp;'; // Non-breaking space for proper rendering
+            } else {
+                span.textContent = char;
+            }
+
+            span.style.transitionDelay = `${i * 0.05}s`;
+            title.appendChild(span);
+        }
+
+        // Intersection Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const letters = entry.target.querySelectorAll('span');
+                    letters.forEach(letter => letter.classList.add('animate'));
+                    observer.unobserve(entry.target); // animate once
+                }
+            });
+        }, { threshold: 0.5 });
+
+        observer.observe(title);
+    });
+}
+
+animateSectionTitles();
+
+});
   </script>
   
 </body>
