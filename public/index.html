@@ -2353,12 +2353,12 @@ const observer = new IntersectionObserver(entries => {
         }
     });
 }, {
-    threshold: 0.3 // triggers early even if a small part is visible
+    threshold: 0.1 // triggers early even if a small part is visible
 });
 document.querySelectorAll('.about-img').forEach(img => observer.observe(img));
 document.querySelectorAll('.gallery-item').forEach(img => observer.observe(img));
 document.querySelectorAll('.testimonial-content').forEach(img => observer.observe(img));
-document.querySelectorAll('.testimonial-slider').forEach(img => observer.observe(img));
+
 
 serviceImages.forEach(img => {
     observer.observe(img);
