@@ -479,6 +479,7 @@
 
 .animate-img {
     animation: slideInFromLeft 0.8s ease-out forwards;
+     
 }
 
 
@@ -1046,7 +1047,8 @@
     .testimonial-slider::-webkit-scrollbar {
         display: none;
     }
-    
+
+
     .testimonial-card {
         flex: 0 0 calc(25% - 23px);
         scroll-snap-align: start;
@@ -1059,7 +1061,8 @@
         border: 1px solid rgba(244, 207, 198, 0.2);
         position: relative;
         overflow: visible;
-        opacity: 0;
+
+
     }
     
     .testimonial-card::before {
@@ -1076,6 +1079,7 @@
     .testimonial-content {
         position: relative;
         z-index: 2;
+        opacity: 0;
     }
     
     .quote-icon {
@@ -1558,7 +1562,7 @@
 <a href="#contact" class="floating-join-btn">
     Contact Us <i class="fas fa-arrow-right"></i>
 </a>
-<a href="https://chat.whatsapp.com/" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+<a href="https://wa.me/+918019717221" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-whatsapp"></i>
         <span class="whatsapp-tooltip">Chat with us on WhatsApp</span>
     </a>
@@ -1951,7 +1955,7 @@
                     </div>
                     <div class="contact-text">
                         <h4>Phone</h4>
-                        <a href="tel:+919876543210">+91 98765 43210</a>
+                        <a href="tel:+918019717221">+91 80197 17221</a>
                     </div>
                 </div>
                 <div class="contact-item">
@@ -1969,7 +1973,7 @@
                     </div>
                     <div class="contact-text">
                         <h4>WhatsApp</h4>
-                        <a href="https://wa.me/919876543210">+91 98765 43210</a>
+                        <a href="https://wa.me/918019717221">+91 80197 17221</a>
                     </div>
                 </div>
                 <div class="contact-item">
@@ -2353,9 +2357,8 @@ const observer = new IntersectionObserver(entries => {
 });
 document.querySelectorAll('.about-img').forEach(img => observer.observe(img));
 document.querySelectorAll('.gallery-item').forEach(img => observer.observe(img));
-
-document.querySelectorAll('.testimonial-card').forEach(img => observer.observe(img));
-
+document.querySelectorAll('.testimonial-content').forEach(img => observer.observe(img));
+document.querySelectorAll('.testimonial-slider').forEach(img => observer.observe(img));
 
 serviceImages.forEach(img => {
     observer.observe(img);
