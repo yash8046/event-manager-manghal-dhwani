@@ -218,6 +218,12 @@
             transition: all 0.3s ease;
             text-decoration: none;
             box-shadow: 0 4px 15px rgba(166, 120, 153, 0.4);
+           
+        }
+         .btn1n:hover {
+            background: linear-gradient(to right, var(--muted-mauve), var(--blush-peach-alt));
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(166, 120, 153, 0.6);
         }
        .btn {
     opacity: 0;
@@ -333,6 +339,7 @@
         /* About Section */
         .about {
             background-color: var(--soft-cream);
+            padding-bottom: 50px
         }
 
         .about-container {
@@ -377,7 +384,7 @@
         }
 
      .about-content h3 {
-            font-family: 'Montserrat', sans-serif;
+            text-align: center;
             font-size: 1.8rem;
             color: var(--deep-plum-alt);
             margin-bottom: 20px;
@@ -422,6 +429,7 @@
         /* Services Section */
         .services {
             background-color: var(--soft-cream-alt);
+             padding-top: 50px 
         }
 
         .services-container {
@@ -1586,7 +1594,7 @@
                 <p>Founded with a passion for creating beautiful events, Manghal Dhwani has grown from a small local business to a renowned event planning company. Our journey began with a simple vision: to transform ordinary events into extraordinary experiences.</p>
                 <p>With years of experience in the industry, we've perfected the art of event planning. Our team of creative professionals works tirelessly to ensure every detail is meticulously planned and executed.</p>
                 <p>We believe that every event tells a story, and we're here to help you tell yours in the most beautiful way possible. From intimate gatherings to grand celebrations, we bring your vision to life with elegance and precision.</p>
-                <a href="#services" class="btn">Our Services</a>
+              
             </div>
         </div>
     </section>
@@ -2369,7 +2377,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 animatedElements.forEach(el => el.style.animationPlayState = 'running');
             }
         });
-    }, { threshold: 0.2 });
+    }, { threshold: 0.1 });
 
     observer.observe(section);
 });
@@ -2596,7 +2604,7 @@ showPhrase();
                     observer.unobserve(entry.target); // animate once
                 }
             });
-        }, { threshold: 0.5 });
+        }, { threshold: 0.1 });
 
         observer.observe(title);
     });
