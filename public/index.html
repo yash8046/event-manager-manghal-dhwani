@@ -1006,6 +1006,7 @@
         font-size: 2.5rem;
         color: #F7D6CB;
         margin-bottom: 15px;
+        
 
         
     }
@@ -1497,6 +1498,35 @@
             font-size: 3rem;
         }
     }
+    .text-container {
+      text-align: center;
+    }
+    .text-letter {
+      display: inline-block;
+      font-size: 3.5rem;
+      font-weight: 600;
+      color: var(--blush-peach);
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.5s ease;
+    }
+    .text-letter.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .text-letter.fade-out {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    .text-space {
+      display: inline-block;
+      width: 8px;
+    }
+    @media (max-width: 768px) {
+      .text-letter {
+        font-size: 2.5rem;
+      }
+    }
     </style>
 </head>
 <body>
@@ -1524,16 +1554,6 @@
             </nav>
         </div>
     </header>
-
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div id="particles-js"></div>
-        <div class="hero-content">
-            <h1 id ="animated-title">Manghal Dhwani Events</h1>
-            <p>Creating unforgettable moments with impeccable planning and execution. We bring your vision to life with elegance and precision.</p>
-            <a href="#services" class="btn1n">Our Services</a>
-        </div>
-    </section>
 <a href="#contact" class="floating-join-btn">
     Contact Us <i class="fas fa-arrow-right"></i>
 </a>
@@ -1541,6 +1561,16 @@
         <i class="fab fa-whatsapp"></i>
         <span class="whatsapp-tooltip">Chat with us on WhatsApp</span>
     </a>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div id="particles-js"></div>
+        <div class="hero-content">
+            <div class="text-container" id="text-container"></div>
+            <p>Creating unforgettable moments with impeccable planning and execution. We bring your vision to life with elegance and precision.</p>
+            <a href="#services" class="btn1n">Our Services</a>
+        </div>
+    </section>
+
     <!-- About Section -->
     <section class="about" id="about">
         <div class="section-title">
@@ -1647,7 +1677,7 @@
 <section class="stats" id="stats">
     <div class="particle-bg" id="stats-particles"></div>
     <div class="section-title1 animate-elite-rise">
-        <h2>Our Impact in Numbers</h2>
+        <h2>Our Impact</h2>
         <p>Years of creating unforgettable moments, quantified</p>
     </div>
     
@@ -1777,7 +1807,7 @@
   <div class="testimonial-particles" id="testimonial-particles"></div>
   <div class="testimonials-container">
     <div class="section-title1">
-      <h2>Client Testimonials</h2>
+      <h2>Client Reviews</h2>
       <p>Hear what our clients say about their unforgettable experiences with Manghal Dhwani Events</p>
     </div>
 
@@ -2468,66 +2498,73 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
     
-          document.addEventListener('DOMContentLoaded', function() {
-            // Text sequences to display
-            const textSequences = [
-               "Manghal Dhwani Events",
-                "Wedding Planning",
-                "Corporate Events",
-                "Social Gatherings",
-                "Movie Events",
-                "MICE Events",
-                "Concerts"
-                
-            ];
-            
-            const titleElement = document.getElementById('animated-title');
-            let sequenceIndex = 0;
-            let charIndex = 0;
-            let isDeleting = false;
-            let typingSpeed = 100;
-            let pauseBetweenTexts = 2000;
-            
-            function typeWriter() {
-                const currentText = textSequences[sequenceIndex];
-                
-                if (isDeleting) {
-                    // Deleting characters
-                    titleElement.textContent = currentText.substring(0, charIndex - 1);
-                    charIndex--;
-                    typingSpeed = 50; // Faster when deleting
-                } else {
-                    // Adding characters
-                    titleElement.textContent = currentText.substring(0, charIndex + 1);
-                    charIndex++;
-                    typingSpeed = 100; // Normal speed when typing
-                }
-                
-                // When current text is complete
-                if (!isDeleting && charIndex === currentText.length) {
-                    // Pause at end of text
-                    typingSpeed = pauseBetweenTexts;
-                    isDeleting = true;
-                } else if (isDeleting && charIndex === 0) {
-                    // Move to next text
-                    isDeleting = false;
-                    sequenceIndex = (sequenceIndex + 1) % textSequences.length;
-                    typingSpeed = 500; // Pause before starting next text
-                }
-                
-                // Add/remove typewriter class for cursor effect
-                if (!isDeleting && charIndex < currentText.length) {
-                    titleElement.classList.add('typewriter');
-                } else {
-                    titleElement.classList.remove('typewriter');
-                }
-                
-                setTimeout(typeWriter, typingSpeed);
-            }
-            
-            // Start the animation after a brief delay
-            setTimeout(typeWriter, 1000);
-        });
+        const phrases = [
+      "Manghal Dhwani Events",
+      "Wedding Planning",
+      "Concerts",
+      "Corporate Events",
+      "Celebrations"
+    ];
+
+    const container = document.getElementById("text-container");
+ let index = 0;
+
+function showPhrase() {
+  container.innerHTML = "";
+  const phrase = phrases[index];
+  const words = phrase.split(' '); // Split into words
+  let totalDelay = 0; // Track cumulative delay for sequencing
+
+  words.forEach((word, wordIndex) => {
+    // Create a word container (keeps letters together)
+    const wordSpan = document.createElement("span");
+    wordSpan.style.display =  "inline-block"; // Prevent line breaks
+    wordSpan.style.whiteSpace = "nowrap"; // Keep letters together
+    container.appendChild(wordSpan);
+
+    // Add letters to the word container
+    for (let i = 0; i < word.length; i++) {
+      const letterSpan = document.createElement("span");
+      letterSpan.textContent = word[i];
+      letterSpan.classList.add("text-letter");
+      wordSpan.appendChild(letterSpan);
+
+      // Animate letters sequentially
+      setTimeout(() => {
+        letterSpan.classList.add("visible");
+      }, totalDelay * 50);
+      totalDelay++;
+    }
+
+    // Add space after words (except the last one)
+    if (wordIndex < words.length - 1) {
+      const spaceSpan = document.createElement("span");
+      spaceSpan.innerHTML = "&nbsp;";
+      spaceSpan.classList.add("text-space");
+      container.appendChild(spaceSpan);
+      totalDelay++; // Account for space in timing
+    }
+  });
+
+  // Fade out after 2.5s
+  setTimeout(() => {
+    const allLetters = container.querySelectorAll('.text-letter');
+    allLetters.forEach((letter, i) => {
+      setTimeout(() => {
+        letter.classList.remove("visible");
+        letter.classList.add("fade-out");
+      }, i * 30);
+    });
+  }, 2500);
+
+  // Next phrase after 3.5s
+  setTimeout(() => {
+    index = (index + 1) % phrases.length;
+    showPhrase();
+  }, 3500);
+}
+
+showPhrase();
  function animateSectionTitles() {
     const sectionTitles = document.querySelectorAll('.section-title h2,.section-title1 h2,.about-content h3');
 
