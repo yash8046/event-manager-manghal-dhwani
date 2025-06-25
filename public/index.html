@@ -626,6 +626,7 @@
             height: 250px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
+            opacity: 0;
         }
 
         .gallery-item img {
@@ -1067,6 +1068,7 @@
         border: 1px solid rgba(244, 207, 198, 0.2);
         position: relative;
         overflow: visible;
+        opacity: 0;
     }
     
     .testimonial-card::before {
@@ -2356,7 +2358,7 @@ const observer = new IntersectionObserver(entries => {
         }
     });
 }, {
-    threshold: 0.1 // triggers early even if a small part is visible
+    threshold: 0.3 // triggers early even if a small part is visible
 });
 document.querySelectorAll('.about-img').forEach(img => observer.observe(img));
 document.querySelectorAll('.gallery-item').forEach(img => observer.observe(img));
@@ -2498,7 +2500,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     }
                 }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.2 });
 
         // Observe all animated elements
         document.querySelectorAll('.animate-elite-left, .animate-elite-right, .animate-elite-rise, .stat-card').forEach(el => {
@@ -2604,7 +2606,7 @@ showPhrase();
                     observer.unobserve(entry.target); // animate once
                 }
             });
-        }, { threshold: 0.1 });
+        }, { threshold: 0.3 });
 
         observer.observe(title);
     });
