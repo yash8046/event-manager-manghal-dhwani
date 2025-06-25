@@ -1392,11 +1392,15 @@
         transform: translateY(20px);
     }
     
-    .stat-card.animate {
-        opacity: 1;
-        transform: translateY(0);
+ 
+     .stat-card.animate-img {
+    animation: slideInFromLeft 0.8s ease-out forwards;
+}
+    .stat-card:hover {
+        transform: translateY(-8px) scale(1.02);
+        background: rgba(255, 255, 255, 0.15);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
     }
-    
     .stat-card:hover {
         transform: translateY(-8px) scale(1.02);
         background: rgba(255, 255, 255, 0.15);
@@ -2316,6 +2320,11 @@ const observer = new IntersectionObserver(entries => {
 }, {
     threshold: 0.1 // triggers early even if a small part is visible
 });
+document.querySelectorAll('.about-img').forEach(img => observer.observe(img));
+document.querySelectorAll('.gallery-item').forEach(img => observer.observe(img));
+
+document.querySelectorAll('.testimonial-card').forEach(img => observer.observe(img));
+
 
 serviceImages.forEach(img => {
     observer.observe(img);
