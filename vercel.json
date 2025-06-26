@@ -1,0 +1,19 @@
+{
+  "rewrites": [
+    {
+      "source": "/wedding",
+      "destination": "/wedding/wedding.html"
+    },
+    {
+      "source": "/wedding/",
+      "destination": "/wedding/wedding.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/wedding/wedding.html",
+      "destination": "/wedding",
+      "permanent": true
+    }
+  ]
+}
