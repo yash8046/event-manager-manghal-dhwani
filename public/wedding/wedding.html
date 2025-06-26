@@ -1060,7 +1060,7 @@
             </a>
             <nav>
                 <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
+                    <li><a href="../index.html">Home</a></li>
                     <li><a href="#packages">Packages</a></li>
                     <li><a href="#gallery">Gallery</a></li>
                     <li><a href="#timeline">Timeline</a></li>
@@ -1612,33 +1612,68 @@
   },
   "retina_detect": true
 });
-
-
-        // Text Animation
-        const heroTitle = document.querySelector('.wedding-hero h1');
-        const heroText = heroTitle.textContent;
-        heroTitle.innerHTML = '';
-
+// Improved text animation with space handling and visibility control
+document.addEventListener('DOMContentLoaded', function() {
+    const heroTitle = document.querySelector('.wedding-hero h1');
+    
+    // Only animate if the element exists
+    if (heroTitle) {
+        const heroText = heroTitle.textContent.trim(); // Trim to remove extra whitespace
+        heroTitle.innerHTML = ''; // Clear the content
+        
+        // Create a document fragment for better performance
+        const fragment = document.createDocumentFragment();
+        let delayCounter = 0;
+        
         for (let i = 0; i < heroText.length; i++) {
+            const char = heroText[i];
+            
+            // Skip animating spaces (but still preserve them in the DOM)
+            if (char === ' ') {
+                const spaceSpan = document.createElement('span');
+                spaceSpan.textContent = ' ';
+                spaceSpan.style.display = 'inline'; // Ensure spaces are rendered
+                fragment.appendChild(spaceSpan);
+                continue;
+            }
+            
             const span = document.createElement('span');
             span.className = 'text-letter';
-            span.textContent = heroText[i] === ' ' ? ' ' : heroText[i];
-            span.style.animationDelay = `${i * 0.05}s`;
-            heroTitle.appendChild(span);
+            span.textContent = char;
+            span.style.animationDelay = `${delayCounter * 0.05}s`;
+            fragment.appendChild(span);
+            delayCounter++; // Only increment delay for non-space characters
         }
-
-        // Animate letters when visible
+        
+        heroTitle.appendChild(fragment);
+        
+        // Improved Intersection Observer
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const letters = entry.target.querySelectorAll('.text-letter');
-                    letters.forEach(letter => letter.classList.add('visible'));
+                    letters.forEach(letter => {
+                        // Make sure animation only plays when actually visible
+                        letter.style.visibility = 'visible';
+                        letter.classList.add('visible');
+                    });
                     observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.5 });
-
+        }, { 
+            threshold: 0.5,
+            rootMargin: '0px 0px -100px 0px' // Trigger when 100px from bottom of viewport
+        });
+        
+        // Hide letters initially to prevent flash before animation
+        const letters = heroTitle.querySelectorAll('.text-letter');
+        letters.forEach(letter => {
+            letter.style.visibility = 'hidden';
+        });
+        
         observer.observe(heroTitle);
+    }
+});
     </script>
 </body>
 </html>
