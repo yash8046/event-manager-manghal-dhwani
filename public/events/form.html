@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Manghal Dhwani Events</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --deep-plum: #2D0B36;
+            --blush-peach: #F4CFC6;
+            --soft-cream: #FDF8F4;
+            --muted-mauve: #B58DAE;
+            --charcoal: #3A3A3A;
+            --error-red: #E74C3C;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--soft-cream);
+            color: var(--charcoal);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(244, 207, 198, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(181, 141, 174, 0.1) 0%, transparent 20%);
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: linear-gradient(135deg, rgba(244, 207, 198, 0.3), rgba(181, 141, 174, 0.3)),
+                        radial-gradient(circle at top right, rgba(255, 255, 255, 0.1), transparent),
+                        radial-gradient(circle at bottom left, rgba(0, 0, 0, 0.05), transparent);
+            z-index: -2;
+            pointer-events: none;
+            backdrop-filter: blur(3px);
+        }
+
+        .form-container {
+            max-width: 600px;
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(45, 11, 54, 0.1);
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+            transform: translateY(0);
+            opacity: 1;
+            transition: all 0.5s ease;
+        }
+
+        .form-container.loading {
+            transform: translateY(10px);
+            opacity: 0.9;
+        }
+
+        .form-header {
+            background: linear-gradient(135deg, var(--deep-plum), var(--muted-mauve));
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%),
+                repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(244, 207, 198, 0.1) 5px, rgba(244, 207, 198, 0.1) 10px);
+            animation: rotate 20s linear infinite;
+            z-index: 0;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .form-header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .form-header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .form-header p {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        .form-body {
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--deep-plum);
+            font-size: 0.95rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--muted-mauve);
+            box-shadow: 0 0 0 3px rgba(181, 141, 174, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%232D0B36' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 16px 12px;
+        }
+
+        .submit-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, var(--muted-mauve), var(--deep-plum));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            box-shadow: 0 5px 15px rgba(181, 141, 174, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(181, 141, 174, 0.6);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .submit-btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--deep-plum), var(--muted-mauve));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .submit-btn:hover::after {
+            opacity: 1;
+        }
+
+        .submit-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .loading-spinner {
+            display: none;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: translateY(-50%) rotate(360deg); }
+        }
+
+        .submit-btn.loading .loading-spinner {
+            display: block;
+        }
+
+        /* Dialog Overlay */
+        .dialog-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(45, 11, 54, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .dialog-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dialog-box {
+            background: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 400px;
+            padding: 30px;
+            text-align: center;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease 0.1s;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dialog-overlay.active .dialog-box {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .dialog-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, var(--deep-plum), var(--muted-mauve));
+        }
+
+        .dialog-box.error::before {
+            background: linear-gradient(90deg, var(--error-red), #C0392B);
+        }
+
+        .dialog-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--deep-plum), var(--muted-mauve));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2.5rem;
+            box-shadow: 0 5px 15px rgba(181, 141, 174, 0.4);
+        }
+
+        .dialog-icon.error {
+            background: linear-gradient(135deg, var(--error-red), #C0392B);
+        }
+
+        .dialog-title {
+            font-size: 1.5rem;
+            color: var(--deep-plum);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .dialog-title.error {
+            color: var(--error-red);
+        }
+
+        .dialog-message {
+            color: var(--charcoal);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .dialog-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, var(--muted-mauve), var(--deep-plum));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(181, 141, 174, 0.4);
+        }
+
+        .dialog-btn.error {
+            background: linear-gradient(135deg, var(--error-red), #C0392B);
+            box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+        }
+
+        .dialog-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(181, 141, 174, 0.6);
+        }
+
+        .dialog-btn.error:hover {
+            box-shadow: 0 8px 20px rgba(231, 76, 60, 0.6);
+        }
+
+        /* Floating decorative elements */
+        .floating-element {
+            position: fixed;
+            border-radius: 50%;
+            opacity: 0.1;
+            z-index: -1;
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            background: var(--deep-plum);
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            background: var(--muted-mauve);
+            bottom: 5%;
+            right: 5%;
+            animation-delay: 2s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            background: var(--blush-peach);
+            top: 50%;
+            right: 10%;
+            animation-delay: 4s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .form-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .form-body {
+                padding: 25px 20px;
+            }
+            
+            .form-control {
+                padding: 12px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .form-header {
+                padding: 25px 20px;
+            }
+            
+            .form-header h1 {
+                font-size: 1.5rem;
+            }
+            
+            .form-header p {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating decorative elements -->
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+    <div class="floating-element"></div>
+
+    <!-- Main Form Container -->
+    <div class="form-container" id="formContainer">
+        <div class="form-header">
+            <div class="form-header-content">
+                <h1>Plan Your Event With Us</h1>
+                <p>Fill out the form below and we'll get back to you within 24 hours</p>
+            </div>
+        </div>
+        
+        <div class="form-body">
+            <form id="eventForm" action="https://script.google.com/macros/s/AKfycbzvpd1uP69SJ0zWPp7bMRwg5b6Ge7-O1GpiZ3NYeJF67fBctM_2JeiewoTnodYGoCFZ/exec" method="POST">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="user_name" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="user_email" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="user_phone" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="eventType">Event Type</label>
+                    <select id="eventType" name="event_type" class="form-control" required>
+                        <option value="">Select Event Type</option>
+                        <option value="wedding">Wedding</option>
+                        <option value="social">Social Event</option>
+                        <option value="corporate">Corporate Event</option>
+                        <option value="mice">MICE Event</option>
+                        <option value="movie">Movie Event</option>
+                        <option value="concert">Concert</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" class="form-control" required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <span>Submit Request</span>
+                    <div class="loading-spinner"></div>
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Success Dialog -->
+    <div class="dialog-overlay" id="successDialog">
+        <div class="dialog-box">
+            <div class="dialog-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h3 class="dialog-title">Thank You!</h3>
+            <p class="dialog-message">Your event request has been submitted successfully. Our team will contact you within 24 hours to discuss your requirements.</p>
+            <button class="dialog-btn" id="successDialogClose">Continue</button>
+        </div>
+    </div>
+    
+    <!-- Error Dialog -->
+    <div class="dialog-overlay" id="errorDialog">
+        <div class="dialog-box error">
+            <div class="dialog-icon error">
+                <i class="fas fa-exclamation"></i>
+            </div>
+            <h3 class="dialog-title error">Submission Failed</h3>
+            <p class="dialog-message">There was an error submitting your form. Please check your connection and try again. If the problem persists, contact us directly.</p>
+            <button class="dialog-btn error" id="errorDialogClose">Try Again</button>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('eventForm');
+            const formContainer = document.getElementById('formContainer');
+            const successDialog = document.getElementById('successDialog');
+            const errorDialog = document.getElementById('errorDialog');
+            const successDialogClose = document.getElementById('successDialogClose');
+            const errorDialogClose = document.getElementById('errorDialogClose');
+            const submitBtn = form.querySelector('.submit-btn');
+            
+            // Form submission handler
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show loading state
+                formContainer.classList.add('loading');
+                submitBtn.classList.add('loading');
+                submitBtn.disabled = true;
+                
+                // Prepare form data
+                const formData = new FormData(form);
+                
+                // Submit to Google Apps Script
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    // Show success dialog
+                    successDialog.classList.add('active');
+                    
+                    // Reset form and loading state
+                    form.reset();
+                    formContainer.classList.remove('loading');
+                    submitBtn.classList.remove('loading');
+                    submitBtn.disabled = false;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    
+                    // Show error dialog
+                    errorDialog.classList.add('active');
+                    
+                    // Reset loading state
+                    formContainer.classList.remove('loading');
+                    submitBtn.classList.remove('loading');
+                    submitBtn.disabled = false;
+                });
+            });
+            
+            // Close success dialog handler
+            successDialogClose.addEventListener('click', function() {
+                successDialog.classList.remove('active');
+            });
+            
+            // Close error dialog handler
+            errorDialogClose.addEventListener('click', function() {
+                errorDialog.classList.remove('active');
+            });
+            
+            // Close dialogs when clicking outside
+            successDialog.addEventListener('click', function(e) {
+                if (e.target === successDialog) {
+                    successDialog.classList.remove('active');
+                }
+            });
+            
+            errorDialog.addEventListener('click', function(e) {
+                if (e.target === errorDialog) {
+                    errorDialog.classList.remove('active');
+                }
+            });
+            
+            // Add floating animation to form container on load
+            setTimeout(() => {
+                formContainer.style.transform = 'translateY(0)';
+                formContainer.style.opacity = '1';
+            }, 100);
+        });
+    </script>
+</body>
+</html>

@@ -2,17 +2,67 @@
   "rewrites": [
     {
       "source": "/wedding",
-      "destination": "/wedding/wedding.html"
+      "destination": "/events/wedding.html"
     },
     {
-      "source": "/wedding/",
-      "destination": "/wedding/wedding.html"
+      "source": "/social",
+      "destination": "/events/social.html"
+    },
+    {
+      "source": "/movie",
+      "destination": "/events/movie.html"
+    },
+    {
+      "source": "/mice",
+      "destination": "/events/mice.html"
+    },
+    {
+      "source": "/concert",
+      "destination": "/events/concert.html"
+    },
+    {
+      "source": "/co-operate",
+      "destination": "/events/co-operate.html"
+    },
+    {
+      "source": "/form",
+      "destination": "/events/form.html"
     }
   ],
   "redirects": [
     {
-      "source": "/wedding/wedding.html",
+      "source": "/events/wedding.html",
       "destination": "/wedding",
+      "permanent": true
+    },
+    {
+      "source": "/events/social.html",
+      "destination": "/social",
+      "permanent": true
+    },
+    {
+      "source": "/events/movie.html",
+      "destination": "/movie",
+      "permanent": true
+    },
+    {
+      "source": "/events/mice.html",
+      "destination": "/mice",
+      "permanent": true
+    },
+    {
+      "source": "/events/concert.html",
+      "destination": "/concert",
+      "permanent": true
+    },
+    {
+      "source": "/events/co-operate.html",
+      "destination": "/co-operate",
+      "permanent": true
+    },
+    {
+      "source": "/events/form.html",
+      "destination": "/form",
       "permanent": true
     }
   ]

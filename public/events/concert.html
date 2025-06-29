@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Planning | Manghal Dhwani Events</title>
+    <title>Concert Planning | Manghal Dhwani Events</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Playfair+Display:wght@400;600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
@@ -83,12 +83,23 @@
             color: var(--muted-mauve);
         }
 
-        .logo-img {
-            width: 70px;
-            height: 70px;
-            object-fit: contain;
-            transition: transform 0.3s ease;
-        }
+       .logo-img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+     display: inline-block;
+  animation: rotateSwing 3s ease-in-out;
+}
+@keyframes rotateSwing {
+  0%   { transform: rotate(0deg); }
+  20%  { transform: rotate(10deg); }
+  40%  { transform: rotate(-10deg); }
+  60%  { transform: rotate(4deg); }
+  80%  { transform: rotate(-4deg); }
+  100% { transform: rotate(0deg); }
+}
+
 
         .logo:hover .logo-img {
             transform: scale(1.1) rotate(5deg);
@@ -147,7 +158,8 @@
         /* Hero Section */
         .wedding-hero {
             height: 100vh;
-            background: linear-gradient(rgba(45, 11, 54, 0.7), rgba(59, 10, 71, 0.7)), url('https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+background: linear-gradient(rgba(45, 11, 54, 0.7), rgba(59, 10, 71, 0.7)),
+url('https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -158,29 +170,60 @@
         }
 
         .wedding-hero-content {
-            max-width: 800px;
+            max-width: 100%;
             padding: 0 20px;
             z-index: 1;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 1s ease forwards 0.5s;
+             word-break: break-word; /* Prevents overflow */
+            overflow-wrap: break-word;  /* Ensures compatibility */
         }
-
+        .animate-img {
+    animation: slideInFromLeft 0.8s ease-out forwards;
+     
+}
+        .animate-img1 {
+    animation: slideInFromRight 0.8s ease-out forwards;
+     
+}
         @keyframes fadeInUp {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
+@keyframes slideInFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+@keyframes slideInFromRight {
+    0% {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
 
-        .wedding-hero h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 4.5rem;
-            margin-bottom: 20px;
-            color: var(--blush-peach);
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-        }
 
+.wedding-hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    color: var(--blush-peach);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+
+    /* Add animation */
+    animation: slideInFromLeft 1.5s ease-out forwards;
+}
         .wedding-hero p {
             font-size: 1.3rem;
             margin-bottom: 30px;
@@ -188,6 +231,7 @@
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
+            animation: slideInFromRight 1.5s ease-out forwards;
         }
 
         .btn-wedding {
@@ -205,6 +249,7 @@
             box-shadow: 0 4px 15px rgba(207, 174, 144, 0.4);
             position: relative;
             overflow: hidden;
+            animation: slideInFromLeft 1.5s ease-out forwards;
         }
 
         .btn-wedding:hover {
@@ -223,8 +268,14 @@
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
             transition: 0.5s;
+                background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: buttonShine 2s ease-in-out 1.8s forwards;
         }
-
+@keyframes buttonShine {
+    100% {
+        left: 100%;
+    }
+}
         .btn-wedding:hover::before {
             left: 100%;
         }
@@ -242,13 +293,25 @@
         }
 
         .section-title-wedding h2 {
-            font-family: 'Playfair Display', serif;
             font-size: 3rem;
             color: var(--deep-plum);
             margin-bottom: 15px;
             position: relative;
             display: inline-block;
         }
+        .section-title-wedding h2 span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(50px) rotate(10deg);
+    filter: blur(3px);
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.section-title-wedding h2 span.animate {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+    filter: blur(0);
+}
 
         .section-title-wedding h2::after {
             content: '';
@@ -294,6 +357,7 @@
             position: relative;
             opacity: 0;
             transform: translateY(30px);
+             animation: slideInFromLeft 1.5s ease-out forwards;
         }
 
         .package-card.animate {
@@ -346,7 +410,19 @@
             position: relative;
             z-index: 1;
         }
+.package-name span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(50px) rotate(10deg);
+    filter: blur(3px);
+    transition: all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
 
+.package-name span.animate {
+    opacity: 1;
+    transform: translateY(0) rotate(0);
+    filter: blur(0);
+}
         .package-price {
             font-size: 1.8rem;
             font-weight: 700;
@@ -484,118 +560,142 @@
         }
 
         /* Wedding Timeline Section */
-        .wedding-timeline {
-            background-color: var(--soft-cream-alt);
-            position: relative;
-            overflow: hidden;
-        }
+      /* Wedding Timeline - Mobile Optimized */
+.wedding-timeline {
+    background-color: var(--soft-cream-alt);
+    padding: 30px 0;
+}
 
-        .timeline-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            padding: 0 20px;
-        }
+.timeline-container {
+    max-width: 100%;
+    padding: 0 15px;
+}
 
-        .timeline {
-            position: relative;
-            padding: 40px 0;
-        }
+.timeline {
+    position: relative;
+    padding: 20px 0;
+}
 
-        .timeline::before {
-            content: '';
-            position: absolute;
-            width: 2px;
-            background: linear-gradient(to bottom, var(--gold), var(--muted-mauve));
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -1px;
-        }
+/* Timeline line - thinner on mobile */
+.timeline::before {
+    content: '';
+    position: absolute;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--gold), var(--muted-mauve));
+    top: 0;
+    bottom: 0;
+    left: 15px; /* Moved to the left */
+}
 
-        .timeline-item {
-            padding: 20px 40px;
-            position: relative;
-            width: 50%;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.5s ease;
-        }
+.timeline-item {
+    position: relative;
+    padding-left: 45px; /* Space for dot */
+    padding-right: 15px;
+    margin-bottom: 30px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+}
 
-        .timeline-item.animate {
-            opacity: 1;
-            transform: translateY(0);
-        }
+.timeline-item.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
 
-        .timeline-item:nth-child(odd) {
-            left: 0;
-            text-align: right;
-        }
+/* Timeline dot - larger for touch */
+.timeline-dot {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    left: 3px;
+    top: 5px;
+    border-radius: 50%;
+    background-color: var(--gold);
+    z-index: 1;
+    box-shadow: 0 0 0 6px rgba(207, 174, 144, 0.15);
+}
 
-        .timeline-item:nth-child(even) {
-            left: 50%;
-            text-align: left;
-        }
+.timeline-date {
+    display: inline-block;
+    color: var(--gold);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    background: rgba(255,255,255,0.7);
+    padding: 3px 8px;
+    border-radius: 12px;
+}
 
-        .timeline-dot {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background-color: var(--gold);
-            top: 30px;
-            z-index: 1;
-            box-shadow: 0 0 0 4px rgba(207, 174, 144, 0.2);
-        }
+.timeline-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--deep-plum);
+    margin-bottom: 12px;
+    line-height: 1.3;
+}
 
-        .timeline-item:nth-child(odd) .timeline-dot {
-            right: -10px;
-        }
+.timeline-content {
+    background-color: white;
+    padding: 18px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    position: relative;
+}
 
-        .timeline-item:nth-child(even) .timeline-dot {
-            left: -10px;
-        }
+/* Arrow removed for mobile - not necessary */
+.timeline-content::after {
+    display: none;
+}
 
-        .timeline-date {
-            color: var(--gold);
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
+/* Performance optimizations */
+.timeline-item {
+    will-change: transform, opacity;
+}
 
-        .timeline-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            color: var(--deep-plum);
-            margin-bottom: 10px;
-        }
-
-        .timeline-content {
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-            position: relative;
-        }
-
-        .timeline-content::after {
-            content: '';
-            position: absolute;
-            width: 15px;
-            height: 15px;
-            background-color: white;
-            top: 30px;
-            transform: rotate(45deg);
-            box-shadow: 3px -3px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .timeline-item:nth-child(odd) .timeline-content::after {
-            right: -7px;
-        }
-
-        .timeline-item:nth-child(even) .timeline-content::after {
-            left: -7px;
-        }
-
+/* Tablet and Desktop - keep original layout */
+@media (min-width: 769px) {
+    .timeline::before {
+        width: 2px;
+        left: 50%;
+        margin-left: -1px;
+    }
+    
+    .timeline-item {
+        width: 50%;
+        padding: 20px 40px;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+    
+    .timeline-item:nth-child(odd) {
+        left: 0;
+        text-align: right;
+    }
+    
+    .timeline-item:nth-child(even) {
+        left: 50%;
+        text-align: left;
+    }
+    
+    .timeline-dot {
+        width: 20px;
+        height: 20px;
+        box-shadow: 0 0 0 4px rgba(207, 174, 144, 0.2);
+    }
+    
+    .timeline-item:nth-child(odd) .timeline-dot {
+        right: -10px;
+        left: auto;
+    }
+    
+    .timeline-item:nth-child(even) .timeline-dot {
+        left: -10px;
+    }
+    
+    .timeline-content::after {
+        display: block;
+    }
+}
         /* Wedding Team Section */
         .wedding-team {
             background-color: var(--soft-cream);
@@ -677,6 +777,7 @@
             align-items: center;
             margin: 0 5px;
             transition: all 0.3s ease;
+              text-decoration: none;
         }
 
         .social-icon:hover {
@@ -1054,7 +1155,7 @@
 <body>
     <header id="header">
         <div class="header-container">
-            <a href="#" class="logo">
+            <a href="../index.html" class="logo">
                 <img src="../images/logo.png" alt="Manghal Dhwani Logo" class="logo-img">
                 Manghal <span>Dhwani</span>
             </a>
@@ -1076,374 +1177,370 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="wedding-hero" id="home">
-        <div id="particles-js"></div>
-        <div class="wedding-hero-content">
-            <h1>Your Dream Wedding Awaits</h1>
-            <p>Let us craft a celebration as unique as your love story. From intimate ceremonies to grand receptions, we bring your vision to life with elegance and precision.</p>
-            <a href="#contact" class="btn-wedding">Plan Your Wedding</a>
-        </div>
-    </section>
+<!-- Hero Section -->
+<section class="wedding-hero" id="home">
+    <div id="particles-js"></div>
+    <div class="wedding-hero-content">
+        <h1>Spectacular Concert Experiences</h1>
+        <p>From intimate acoustic sessions to massive stadium tours, we create unforgettable musical moments that resonate with audiences.</p>
+        <a href="#contact" class="btn-wedding">Plan Your Concert Event</a>
+    </div>
+</section>
 
-    <!-- Wedding Packages Section -->
-    <section class="wedding-packages wedding-section" id="packages">
+<!-- Concert Packages Section -->
+<section class="wedding-packages wedding-section" id="packages">
+    <div class="section-title-wedding">
+        <h2>Concert Event Packages</h2>
+        <p>Tailored solutions for artists, festivals, and music events of all scales</p>
+    </div>
+    <div class="packages-container">
+        <div class="packages-grid">
+            <!-- Package 1 -->
+            <div class="package-card">
+                <div class="package-header">
+                    <h3 class="package-name">Stadium Spectacular</h3>
+                    <div class="package-price">₹50L+ <span>starting price</span></div>
+                </div>
+                <div class="package-features">
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> Full concert production</li>
+                        <li><i class="fas fa-check-circle"></i> Stage & lighting design</li>
+                        <li><i class="fas fa-check-circle"></i> Sound engineering</li>
+                        <li><i class="fas fa-check-circle"></i> VIP hospitality</li>
+                        <li><i class="fas fa-check-circle"></i> Crowd management</li>
+                        <li><i class="fas fa-check-circle"></i> Media coverage</li>
+                    </ul>
+                    <a href="#contact" class="package-btn">Inquire Now</a>
+                </div>
+            </div>
+
+            <!-- Package 2 -->
+            <div class="package-card">
+                <div class="package-header">
+                    <h3 class="package-name">Festival Production</h3>
+                    <div class="package-price">₹30L+ <span>starting price</span></div>
+                </div>
+                <div class="package-features">
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> Multi-stage setup</li>
+                        <li><i class="fas fa-check-circle"></i> Artist coordination</li>
+                        <li><i class="fas fa-check-circle"></i> Vendor management</li>
+                        <li><i class="fas fa-check-circle"></i> Food & beverage</li>
+                        <li><i class="fas fa-check-circle"></i> Security planning</li>
+                        <li><i class="fas fa-check-circle"></i> Brand activations</li>
+                    </ul>
+                    <a href="#contact" class="package-btn">Inquire Now</a>
+                </div>
+            </div>
+
+            <!-- Package 3 -->
+            <div class="package-card">
+                <div class="package-header">
+                    <h3 class="package-name">Club & Lounge Shows</h3>
+                    <div class="package-price">₹5L+ <span>starting price</span></div>
+                </div>
+                <div class="package-features">
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check-circle"></i> Intimate venue setup</li>
+                        <li><i class="fas fa-check-circle"></i> Premium sound system</li>
+                        <li><i class="fas fa-check-circle"></i> Lighting design</li>
+                        <li><i class="fas fa-check-circle"></i> VIP table service</li>
+                        <li><i class="fas fa-check-circle"></i> Artist hospitality</li>
+                        <li><i class="fas fa-check-circle"></i> Promotional support</li>
+                    </ul>
+                    <a href="#contact" class="package-btn">Inquire Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Concert Gallery Section -->
+<section class="wedding-gallery wedding-section" id="gallery">
+    <div class="section-title-wedding">
+        <h2>Concert Events Gallery</h2>
+        <p>Our portfolio of unforgettable musical experiences</p>
+    </div>
+    <div class="gallery-container-wedding">
+        <div class="gallery-grid-wedding">
+            <!-- Gallery Item 1 -->
+            <div class="gallery-item-wedding">
+                <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Stadium Concert">
+                <div class="gallery-overlay-wedding">
+                    <div class="gallery-caption">
+                        <h3>Stadium Tour</h3>
+                        <p>Mumbai, 2023</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery Item 2 -->
+            <div class="gallery-item-wedding">
+                <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Music Festival">
+                <div class="gallery-overlay-wedding">
+                    <div class="gallery-caption">
+                        <h3>Music Festival</h3>
+                        <p>Goa, 2023</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery Item 3 -->
+            <div class="gallery-item-wedding">
+                <img src="https://images.unsplash.com/photo-1501612780327-45045538702b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Club Performance">
+                <div class="gallery-overlay-wedding">
+                    <div class="gallery-caption">
+                        <h3>Club Night</h3>
+                        <p>Bangalore, 2023</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery Item 4 -->
+            <div class="gallery-item-wedding">
+                <img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Corporate Event">
+                <div class="gallery-overlay-wedding">
+                    <div class="gallery-caption">
+                        <h3>Corporate Concert</h3>
+                        <p>Delhi, 2022</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery Item 5 -->
+            <div class="gallery-item-wedding">
+                <img src="https://images.unsplash.com/photo-1461784180009-06ab8af0b523?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Award Show">
+                <div class="gallery-overlay-wedding">
+                    <div class="gallery-caption">
+                        <h3>Award Show Performance</h3>
+                        <p>Hyderabad, 2022</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery Item 6 -->
+            <div class="gallery-item-wedding">
+                <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="After Party">
+                <div class="gallery-overlay-wedding">
+                    <div class="gallery-caption">
+                        <h3>Artist After Party</h3>
+                        <p>Chennai, 2023</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Concert Timeline Section -->
+<section class="wedding-timeline wedding-section" id="timeline">
+    <div class="section-title-wedding">
+        <h2>Our Concert Planning Process</h2>
+        <p>From concept to encore - how we create unforgettable music experiences</p>
+    </div>
+    <div class="timeline-container">
+        <div class="timeline">
+            <!-- Timeline Item 1 -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">Week 1</div>
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Artist Vision</h3>
+                    <p>We collaborate with artists to understand their creative vision and performance requirements.</p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 2 -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">Week 2-3</div>
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Production Design</h3>
+                    <p>Our team designs stage setup, lighting, and special effects to match the artist's style.</p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 3 -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">Week 4</div>
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Technical Planning</h3>
+                    <p>Sound engineering, video screens, and technical rider requirements are finalized.</p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 4 -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">Week 5-6</div>
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Venue Preparation</h3>
+                    <p>Stage construction, backstage areas, and audience seating arrangements are prepared.</p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 5 -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">Week 7</div>
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Rehearsals</h3>
+                    <p>Full technical rehearsals with artists and production team to perfect every detail.</p>
+                </div>
+            </div>
+
+            <!-- Timeline Item 6 -->
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-date">Event Day</div>
+                <div class="timeline-content">
+                    <h3 class="timeline-title">Showtime</h3>
+                    <p>Our team executes the flawless production while the artist focuses on their performance.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Concert Team Section -->
+<section class="wedding-team wedding-section" id="team">
+    <div class="section-title-wedding">
+        <h2>Our Concert Production Team</h2>
+        <p>Specialists in creating unforgettable live music experiences</p>
+    </div>
+    <div class="team-container">
+        <div class="team-grid">
+            <!-- Team Member 1 -->
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Production Manager">
+                    <div class="member-social">
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">Rahul Mehta</h3>
+                    <p class="member-role">Production Manager</p>
+                    <p class="member-bio">Specializing in large-scale concerts with 15+ years in music events.</p>
+                </div>
+            </div>
+
+            <!-- Team Member 2 -->
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Stage Designer">
+                    <div class="member-social">
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">Anjali Patel</h3>
+                    <p class="member-role">Stage Designer</p>
+                    <p class="member-bio">Creates immersive stage designs that enhance the musical experience.</p>
+                </div>
+            </div>
+
+            <!-- Team Member 3 -->
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Sound Engineer">
+                    <div class="member-social">
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">Neha Kapoor</h3>
+                    <p class="member-role">Sound Engineer</p>
+                    <p class="member-bio">Ensures perfect audio quality for every performance.</p>
+                </div>
+            </div>
+
+            <!-- Team Member 4 -->
+            <div class="team-member">
+                <div class="member-image">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Artist Liaison">
+                    <div class="member-social">
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="member-info">
+                    <h3 class="member-name">Priya Sharma</h3>
+                    <p class="member-role">Artist Liaison</p>
+                    <p class="member-bio">Coordinates all artist requirements and hospitality.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Concert Testimonials Section -->
+<section class="wedding-testimonials wedding-section" id="testimonials">
+    <div class="testimonials-container-wedding">
         <div class="section-title-wedding">
-            <h2>Wedding Packages</h2>
-            <p>Choose from our curated packages or let us customize one just for you</p>
+            <h2 style="color: var(--blush-peach);">Artist Testimonials</h2>
+            <p style="color: rgba(255, 255, 255, 0.8);">What musicians and organizers say about our events</p>
         </div>
-        <div class="packages-container">
-            <div class="packages-grid">
-                <!-- Package 1 -->
-                <div class="package-card">
-                    <div class="package-header">
-                        <h3 class="package-name">The Royal Affair</h3>
-                        <div class="package-price">₹15L+ <span>starting price</span></div>
-                    </div>
-                    <div class="package-features">
-                        <ul class="feature-list">
-                            <li><i class="fas fa-check-circle"></i> Full wedding planning & coordination</li>
-                            <li><i class="fas fa-check-circle"></i> Luxury venue selection</li>
-                            <li><i class="fas fa-check-circle"></i> Premium decor & floral arrangements</li>
-                            <li><i class="fas fa-check-circle"></i> 5-star catering for all events</li>
-                            <li><i class="fas fa-check-circle"></i> Professional photography & videography</li>
-                            <li><i class="fas fa-check-circle"></i> Entertainment & celebrity performances</li>
-                        </ul>
-                        <a href="#contact" class="package-btn">Inquire Now</a>
+        <div class="testimonial-slider-wedding">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-card-wedding">
+                <div class="testimonial-content-wedding">
+                    <div class="quote-icon-wedding">"</div>
+                    <p class="testimonial-text-wedding">The production quality of our stadium tour with Manghal Dhwani was exceptional. They handled everything from stage design to crowd control, allowing us to focus on our performance. The energy was electric!</p>
+                    <div class="client-info-wedding">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Artist" class="client-avatar-wedding">
+                        <h4 class="client-name-wedding">Aryan Singh</h4>
+                        <p class="client-role-wedding">Lead Singer, The Electric Souls</p>
                     </div>
                 </div>
+            </div>
 
-                <!-- Package 2 -->
-                <div class="package-card">
-                    <div class="package-header">
-                        <h3 class="package-name">Elegant Celebration</h3>
-                        <div class="package-price">₹8L+ <span>starting price</span></div>
-                    </div>
-                    <div class="package-features">
-                        <ul class="feature-list">
-                            <li><i class="fas fa-check-circle"></i> Partial wedding planning</li>
-                            <li><i class="fas fa-check-circle"></i> Venue selection assistance</li>
-                            <li><i class="fas fa-check-circle"></i> Elegant decor & floral design</li>
-                            <li><i class="fas fa-check-circle"></i> Premium catering for main events</li>
-                            <li><i class="fas fa-check-circle"></i> Professional photography package</li>
-                            <li><i class="fas fa-check-circle"></i> DJ & entertainment services</li>
-                        </ul>
-                        <a href="#contact" class="package-btn">Inquire Now</a>
+            <!-- Testimonial 2 -->
+            <div class="testimonial-card-wedding">
+                <div class="testimonial-content-wedding">
+                    <div class="quote-icon-wedding">"</div>
+                    <p class="testimonial-text-wedding">Our music festival was executed flawlessly by Manghal Dhwani. They coordinated multiple stages, artist schedules, and vendor management with military precision. The crowd loved every moment!</p>
+                    <div class="client-info-wedding">
+                        <img src="https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Festival Organizer" class="client-avatar-wedding">
+                        <h4 class="client-name-wedding">Riya Malhotra</h4>
+                        <p class="client-role-wedding">Director, Sunburn Festival</p>
                     </div>
                 </div>
+            </div>
 
-                <!-- Package 3 -->
-                <div class="package-card">
-                    <div class="package-header">
-                        <h3 class="package-name">Intimate Gathering</h3>
-                        <div class="package-price">₹5L+ <span>starting price</span></div>
-                    </div>
-                    <div class="package-features">
-                        <ul class="feature-list">
-                            <li><i class="fas fa-check-circle"></i> Day-of coordination</li>
-                            <li><i class="fas fa-check-circle"></i> Venue recommendations</li>
-                            <li><i class="fas fa-check-circle"></i> Beautiful decor setup</li>
-                            <li><i class="fas fa-check-circle"></i> Quality catering service</li>
-                            <li><i class="fas fa-check-circle"></i> Photography coverage</li>
-                            <li><i class="fas fa-check-circle"></i> Basic entertainment options</li>
-                        </ul>
-                        <a href="#contact" class="package-btn">Inquire Now</a>
+            <!-- Testimonial 3 -->
+            <div class="testimonial-card-wedding">
+                <div class="testimonial-content-wedding">
+                    <div class="quote-icon-wedding">"</div>
+                    <p class="testimonial-text-wedding">The intimate club show they produced had the best sound quality I've experienced in years. Their attention to detail in lighting and atmosphere created a magical night for our fans.</p>
+                    <div class="client-info-wedding">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="DJ" class="client-avatar-wedding">
+                        <h4 class="client-name-wedding">DJ Karan</h4>
+                        <p class="client-role-wedding">Electronic Music Producer</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Wedding Gallery Section -->
-    <section class="wedding-gallery wedding-section" id="gallery">
-        <div class="section-title-wedding">
-            <h2>Wedding Gallery</h2>
-            <p>Explore our portfolio of breathtaking weddings we've had the honor to create</p>
+        <div class="testimonial-nav">
+            <div class="testimonial-dot active"></div>
+            <div class="testimonial-dot"></div>
+            <div class="testimonial-dot"></div>
         </div>
-        <div class="gallery-container-wedding">
-            <div class="gallery-grid-wedding">
-                <!-- Gallery Item 1 -->
-                <div class="gallery-item-wedding">
-                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Wedding Ceremony">
-                    <div class="gallery-overlay-wedding">
-                        <div class="gallery-caption">
-                            <h3>Traditional Ceremony</h3>
-                            <p>Jaipur, 2023</p>
-                        </div>
-                    </div>
-                </div>
+    </div>
+</section>
 
-                <!-- Gallery Item 2 -->
-                <div class="gallery-item-wedding">
-                    <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Wedding Reception">
-                    <div class="gallery-overlay-wedding">
-                        <div class="gallery-caption">
-                            <h3>Grand Reception</h3>
-                            <p>Mumbai, 2023</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Gallery Item 3 -->
-                <div class="gallery-item-wedding">
-                    <img src="https://images.unsplash.com/photo-1523438885200-e635ba2c371e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Wedding Decor">
-                    <div class="gallery-overlay-wedding">
-                        <div class="gallery-caption">
-                            <h3>Floral Decor</h3>
-                            <p>Udaipur, 2022</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Gallery Item 4 -->
-                <div class="gallery-item-wedding">
-                    <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Wedding Couple">
-                    <div class="gallery-overlay-wedding">
-                        <div class="gallery-caption">
-                            <h3>Couple Portraits</h3>
-                            <p>Goa, 2023</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Gallery Item 5 -->
-                <div class="gallery-item-wedding">
-                    <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Wedding Party">
-                    <div class="gallery-overlay-wedding">
-                        <div class="gallery-caption">
-                            <h3>Reception Party</h3>
-                            <p>Delhi, 2022</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Gallery Item 6 -->
-                <div class="gallery-item-wedding">
-                    <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Wedding Details">
-                    <div class="gallery-overlay-wedding">
-                        <div class="gallery-caption">
-                            <h3>Event Details</h3>
-                            <p>Bangalore, 2023</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Wedding Timeline Section -->
-    <section class="wedding-timeline wedding-section" id="timeline">
-        <div class="section-title-wedding">
-            <h2>Our Wedding Process</h2>
-            <p>From initial consultation to your magical day, here's how we make it happen</p>
-        </div>
-        <div class="timeline-container">
-            <div class="timeline">
-                <!-- Timeline Item 1 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">Month 1-2</div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">Initial Consultation</h3>
-                        <p>We meet to understand your vision, preferences, and budget. This is where we establish the foundation for your perfect wedding.</p>
-                    </div>
-                </div>
-
-                <!-- Timeline Item 2 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">Month 2-3</div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">Planning & Design</h3>
-                        <p>Our team creates a customized wedding plan including venue selection, decor concepts, and vendor coordination.</p>
-                    </div>
-                </div>
-
-                <!-- Timeline Item 3 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">Month 3-5</div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">Vendor Finalization</h3>
-                        <p>We secure all vendors including caterers, photographers, florists, and entertainment based on your preferences.</p>
-                    </div>
-                </div>
-
-                <!-- Timeline Item 4 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">Month 5-7</div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">Design Development</h3>
-                        <p>Finalizing all design elements including invitations, decor, floral arrangements, and menu selections.</p>
-                    </div>
-                </div>
-
-                <!-- Timeline Item 5 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">Month 7-9</div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">Pre-Wedding Events</h3>
-                        <p>Coordination and execution of pre-wedding events like engagement, mehndi, and sangeet ceremonies.</p>
-                    </div>
-                </div>
-
-                <!-- Timeline Item 6 -->
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">Wedding Day</div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">Your Special Day</h3>
-                        <p>Our team manages all aspects of your wedding day, ensuring everything runs smoothly while you enjoy every moment.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Wedding Team Section -->
-    <section class="wedding-team wedding-section" id="team">
-        <div class="section-title-wedding">
-            <h2>Our Wedding Team</h2>
-            <p>The talented professionals who will make your dream wedding a reality</p>
-        </div>
-        <div class="team-container">
-            <div class="team-grid">
-                <!-- Team Member 1 -->
-                <div class="team-member">
-                    <div class="member-image">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Wedding Planner">
-                        <div class="member-social">
-                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <h3 class="member-name">Priya Sharma</h3>
-                        <p class="member-role">Lead Wedding Planner</p>
-                        <p class="member-bio">With over 10 years of experience, Priya specializes in creating luxurious, personalized weddings that reflect each couple's unique story.</p>
-                    </div>
-                </div>
-
-                <!-- Team Member 2 -->
-                <div class="team-member">
-                    <div class="member-image">
-                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Designer">
-                        <div class="member-social">
-                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <h3 class="member-name">Rahul Mehta</h3>
-                        <p class="member-role">Creative Director</p>
-                        <p class="member-bio">Rahul's innovative designs transform venues into breathtaking spaces, blending tradition with contemporary aesthetics.</p>
-                    </div>
-                </div>
-
-                <!-- Team Member 3 -->
-                <div class="team-member">
-                    <div class="member-image">
-                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Coordinator">
-                        <div class="member-social">
-                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <h3 class="member-name">Anjali Patel</h3>
-                        <p class="member-role">Event Coordinator</p>
-                        <p class="member-bio">Anjali ensures flawless execution of every wedding detail, managing vendors and timelines with precision.</p>
-                    </div>
-                </div>
-
-                <!-- Team Member 4 -->
-                <div class="team-member">
-                    <div class="member-image">
-                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Floral Designer">
-                        <div class="member-social">
-                            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                            <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
-                        </div>
-                    </div>
-                    <div class="member-info">
-                        <h3 class="member-name">Neha Kapoor</h3>
-                        <p class="member-role">Floral & Decor Specialist</p>
-                        <p class="member-bio">Neha creates stunning floral arrangements and decor elements that bring your wedding theme to life.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Wedding Testimonials Section -->
-    <section class="wedding-testimonials wedding-section" id="testimonials">
-        <div class="testimonials-container-wedding">
-            <div class="section-title-wedding">
-                <h2 style="color: var(--blush-peach);">Couples' Stories</h2>
-                <p style="color: rgba(255, 255, 255, 0.8);">Hear from couples who entrusted us with their special day</p>
-            </div>
-            <div class="testimonial-slider-wedding">
-                <!-- Testimonial 1 -->
-                <div class="testimonial-card-wedding">
-                    <div class="testimonial-content-wedding">
-                        <div class="quote-icon-wedding">"</div>
-                        <p class="testimonial-text-wedding">Manghal Dhwani made our wedding dreams come true! From the initial planning to the execution, every detail was perfect. Our families and guests are still talking about how beautiful everything was.</p>
-                        <div class="client-info-wedding">
-                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Couple" class="client-avatar-wedding">
-                            <h4 class="client-name-wedding">Riya & Arjun</h4>
-                            <p class="client-role-wedding">Udaipur Wedding, December 2023</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Testimonial 2 -->
-                <div class="testimonial-card-wedding">
-                    <div class="testimonial-content-wedding">
-                        <div class="quote-icon-wedding">"</div>
-                        <p class="testimonial-text-wedding">Working with Manghal Dhwani was the best decision we made for our wedding. They took care of everything, allowing us to truly enjoy our special day. The team's creativity and attention to detail were exceptional.</p>
-                        <div class="client-info-wedding">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Couple" class="client-avatar-wedding">
-                            <h4 class="client-name-wedding">Aditi & Vikram</h4>
-                            <p class="client-role-wedding">Goa Destination Wedding, February 2023</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Testimonial 3 -->
-                <div class="testimonial-card-wedding">
-                    <div class="testimonial-content-wedding">
-                        <div class="quote-icon-wedding">"</div>
-                        <p class="testimonial-text-wedding">The team understood exactly what we wanted and delivered beyond our expectations. Every element from the decor to the food was perfect. Our wedding was everything we dreamed of and more!</p>
-                        <div class="client-info-wedding">
-                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Couple" class="client-avatar-wedding">
-                            <h4 class="client-name-wedding">Priya & Raj</h4>
-                            <p class="client-role-wedding">Traditional Delhi Wedding, November 2022</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="testimonial-nav">
-                <div class="testimonial-dot active"></div>
-                <div class="testimonial-dot"></div>
-                <div class="testimonial-dot"></div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Wedding CTA Section -->
-    <section class="wedding-cta wedding-section" id="contact">
-        <div class="cta-content">
-            <h2>Ready to Begin Your Journey?</h2>
-            <p>Contact us today to schedule your consultation and start planning the wedding of your dreams. Let's create something extraordinary together.</p>
-            <a href="#contact" class="btn-wedding">Get in Touch</a>
-        </div>
-    </section>
+<!-- Concert CTA Section -->
+<section class="wedding-cta wedding-section" id="contact">
+    <div class="cta-content">
+        <h2>Ready to Rock?</h2>
+        <p>Contact us to discuss how we can create a concert experience that resonates with your audience and amplifies your music.</p>
+        <a href="./form.html" class="btn-wedding">Get in Touch</a>
+    </div>
+</section>
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
@@ -1674,6 +1771,82 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(heroTitle);
     }
 });
+
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animate-img');
+            observer.unobserve(entry.target); // Animate once
+        }
+    });
+}, {
+    threshold: 0.3 // triggers early even if a small part is visible
+});
+document.querySelectorAll('.section-title-wedding').forEach(img => observer.observe(img));
+document.querySelectorAll('.timeline-title').forEach(img => observer.observe(img));
+document.querySelectorAll('.timeline-content').forEach(img => observer.observe(img));
+document.querySelectorAll('.package-btn').forEach(img => observer.observe(img));
+
+const observer1 = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animate-img1');
+            observer1.unobserve(entry.target); // Animate once
+        }
+    });
+}, {
+    threshold: 0.3 // triggers early even if a small part is visible
+});
+document.querySelectorAll('.gallery-item-wedding').forEach(img => observer1.observe(img));
+document.querySelectorAll('.timeline-item').forEach(img => observer1.observe(img));
+document.querySelectorAll('.testimonial-slider-wedding').forEach(img => observer1.observe(img));
+document.querySelectorAll('.package-features').forEach(img => observer1.observe(img));
+document.querySelectorAll('.team-member').forEach(img => observer1.observe(img));
+document.querySelectorAll('.member-info').forEach(img => observer1.observe(img));
+document.querySelectorAll('.package-card').forEach(img => observer1.observe(img));
+document.querySelectorAll('.member-name').forEach(img => observer1.observe(img));
+document.querySelectorAll('.member-bio').forEach(img => observer1.observe(img));
+
+
+ function animateSectionTitles() {
+    const sectionTitles = document.querySelectorAll('.package-name,.section-title-wedding h2');
+
+    sectionTitles.forEach(title => {
+        const text = title.textContent;
+        title.innerHTML = '';
+
+        for (let i = 0; i < text.length; i++) {
+            const char = text[i];
+            const span = document.createElement('span');
+
+            // Preserve spaces
+            if (char === ' ') {
+                span.innerHTML = '&nbsp;'; // Non-breaking space for proper rendering
+            } else {
+                span.textContent = char;
+            }
+
+            span.style.transitionDelay = `${i * 0.05}s`;
+            title.appendChild(span);
+        }
+
+        // Intersection Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const letters = entry.target.querySelectorAll('span');
+                    letters.forEach(letter => letter.classList.add('animate'));
+                    observer.unobserve(entry.target); // animate once
+                }
+            });
+        }, { threshold: 0.3 });
+
+        observer.observe(title);
+    });
+}
+
+animateSectionTitles()
     </script>
 </body>
 </html>

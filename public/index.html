@@ -102,7 +102,18 @@
     height: 70px;
     object-fit: contain;
     transition: transform 0.3s ease;
+     display: inline-block;
+  animation: rotateSwing 3s ease-in-out;
 }
+@keyframes rotateSwing {
+  0%   { transform: rotate(0deg); }
+  20%  { transform: rotate(10deg); }
+  40%  { transform: rotate(-10deg); }
+  60%  { transform: rotate(4deg); }
+  80%  { transform: rotate(-4deg); }
+  100% { transform: rotate(0deg); }
+}
+
 
 .logo:hover .logo-img {
     transform: scale(1.1) rotate(5deg);
@@ -1532,6 +1543,7 @@
         font-size: 2.5rem;
       }
     }
+    
     </style>
 </head>
 <body>
@@ -1539,7 +1551,7 @@
 
     <header id="header">
       <div class="header-container">
-          <a href="#" class="logo">
+          <a href="../index.html" class="logo">
               <img src="images/logo.png" alt="Manghal Dhwani Logo" class="logo-img">
               Manghal <span>Dhwani</span>
           </a>
@@ -1559,7 +1571,7 @@
             </nav>
         </div>
     </header>
-<a href="#contact" class="floating-join-btn">
+<a href="./events/form.html" class="floating-join-btn">
     Contact Us <i class="fas fa-arrow-right"></i>
 </a>
 <a href="https://wa.me/+918019717221" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
@@ -1612,7 +1624,7 @@
                     <div class="service-content">
                         <h3>Wedding Planning</h3>
                         <p>We create magical weddings that reflect your unique love story. From venue selection to decor, catering to entertainment, we handle every detail.</p>
-                       <a href="./wedding/wedding.html" class="btn1n">Learn More <i class="fas fa-chevron-right"></i></a>
+                       <a href="./events/wedding.html" class="btn1n">Learn More <i class="fas fa-chevron-right"></i></a>
                 
                     </div>
                 </div>
@@ -1625,7 +1637,7 @@
                     <div class="service-content">
                         <h3>Social Events</h3>
                         <p>Birthdays, anniversaries, parties and more. We design celebrations that reflect your personality and create lasting memories.</p>
-                        <a href="#" class="read-more">Learn More <i class="fas fa-chevron-right"></i></a>
+                        <a href="./events/social.html" class="btn1n">Learn More <i class="fas fa-chevron-right"></i></a>
                     </div>
                 </div>
 
@@ -1637,7 +1649,7 @@
                     <div class="service-content">
                         <h3>Corporate Events</h3>
                         <p>Professional event planning for business gatherings that impress clients and motivate employees while achieving your objectives.</p>
-                        <a href="#" class="read-more">Learn More <i class="fas fa-chevron-right"></i></a>
+                        <a href="./events/co-operate.html" class="btn1n">Learn More <i class="fas fa-chevron-right"></i></a>
                     </div>
                 </div>
 
@@ -1649,7 +1661,7 @@
                     <div class="service-content">
                         <h3>MICE Events</h3>
                         <p>Meetings, conferences, exhibitions and other professional gatherings planned with precision and attention to detail.</p>
-                        <a href="#" class="read-more">Learn More <i class="fas fa-chevron-right"></i></a>
+                        <a href="./events/mice.html" class="btn1n">Learn More <i class="fas fa-chevron-right"></i></a>
                     </div>
                 </div>
 
@@ -1661,7 +1673,7 @@
                     <div class="service-content">
                         <h3>Movie Events</h3>
                         <p>Promotions, pre-production parties, movie launches and other cinema-related events with Hollywood glamour.</p>
-                        <a href="#" class="read-more">Learn More <i class="fas fa-chevron-right"></i></a>
+                        <a href="./events/movie.html" class="btn1n">Learn More <i class="fas fa-chevron-right"></i></a>
                     </div>
                 </div>
 
@@ -1673,7 +1685,7 @@
                     <div class="service-content">
                         <h3>Concerts</h3>
                         <p>High-energy music events featuring top artists, with perfect sound, lighting and crowd management.</p>
-                        <a href="#" class="read-more">Learn More <i class="fas fa-chevron-right"></i></a>
+                        <a href="./events/concert.html" class="btn1n">Learn More <i class="fas fa-chevron-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -1903,7 +1915,7 @@
     <div class="contact-container">
         <!-- FORM FIRST NOW -->
         <div class="contact-form">
-            <form id="eventForm" action="https://script.google.com/macros/s/AKfycbzvpd1uP69SJ0zWPp7bMRwg5b6Ge7-O1GpiZ3NYeJF67fBctM_2JeiewoTnodYGoCFZ/exec" method="POST">
+            <form id="eventForm" action="https://script.google.com/macros/s/AKfycbx50KP1RRg0dcgvtOalut7bPuQApVjTmum_tyyV6UhldxzOmFGReKfG1THbYKVnSKIfgQ/exec" method="POST">
                 <div class="form-group">
                     <label for="name">Your Name</label>
                     <input type="text" id="name" name="user_name" class="form-control" required>
@@ -1915,18 +1927,6 @@
                 <div class="form-group">
                     <label for="phone">Phone Number</label>
                     <input type="tel" id="phone" name="user_phone" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="eventType">Event Type</label>
-                    <select id="eventType" name="event_type" class="form-control" required>
-                        <option value="">Select Event Type</option>
-                        <option value="wedding">Wedding</option>
-                        <option value="social">Social Event</option>
-                        <option value="corporate">Corporate Event</option>
-                        <option value="mice">MICE Event</option>
-                        <option value="movie">Movie Event</option>
-                        <option value="concert">Concert</option>
-                    </select>
                 </div>
                 <div class="form-group">
                     <label for="message">Your Message</label>
@@ -2358,7 +2358,9 @@ const observer = new IntersectionObserver(entries => {
 document.querySelectorAll('.about-img').forEach(img => observer.observe(img));
 document.querySelectorAll('.gallery-item').forEach(img => observer.observe(img));
 document.querySelectorAll('.testimonial-content').forEach(img => observer.observe(img));
-
+document.querySelectorAll('.section-title h2').forEach(img => observer.observe(img));
+document.querySelectorAll('.section-title1 h2').forEach(img => observer.observe(img));
+document.querySelectorAll('.about-content h3').forEach(img => observer.observe(img));
 
 serviceImages.forEach(img => {
     observer.observe(img);
