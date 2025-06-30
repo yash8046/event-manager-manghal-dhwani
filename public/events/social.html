@@ -82,7 +82,8 @@
         .logo span {
             color: var(--muted-mauve);
         }
- .logo-img {
+
+    .logo-img {
     width: 70px;
     height: 70px;
     object-fit: contain;
@@ -157,7 +158,7 @@
         /* Hero Section */
         .wedding-hero {
             height: 100vh;
-background: linear-gradient(rgba(45, 11, 54, 0.7), rgba(59, 10, 71, 0.7)), url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            background: linear-gradient(rgba(45, 11, 54, 0.7), rgba(59, 10, 71, 0.7)), url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -437,6 +438,7 @@ background: linear-gradient(rgba(45, 11, 54, 0.7), rgba(59, 10, 71, 0.7)), url('
 
         .package-features {
             padding: 30px;
+            opacity: 0;
         }
 
         .feature-list {
@@ -471,6 +473,7 @@ background: linear-gradient(rgba(45, 11, 54, 0.7), rgba(59, 10, 71, 0.7)), url('
             font-weight: 600;
             text-decoration: none;
             transition: all 0.3s ease;
+            opacity: 0;
         }
 
         .package-btn:hover {
@@ -828,6 +831,7 @@ background: linear-gradient(rgba(45, 11, 54, 0.7), rgba(59, 10, 71, 0.7)), url('
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
             padding-bottom: 30px;
+            opacity: 0;
         }
 
         .testimonial-slider-wedding::-webkit-scrollbar {
@@ -1151,7 +1155,7 @@ background: linear-gradient(rgba(45, 11, 54, 0.7), rgba(59, 10, 71, 0.7)), url('
     </style>
 </head>
 <body>
-    <header id="header">
+        <header id="header">
         <div class="header-container">
             <a href="../index.html" class="logo">
                 <img src="../images/logo.png" alt="Manghal Dhwani Logo" class="logo-img">
@@ -1397,7 +1401,59 @@ background: linear-gradient(rgba(45, 11, 54, 0.7), rgba(59, 10, 71, 0.7)), url('
         </div>
     </div>
 </section>
+<section class="wedding-testimonials wedding-section" id="testimonials">
+    <div class="testimonials-container-wedding">
+        <div class="section-title-wedding">
+            <h2 style="color: var(--blush-peach);">Client Testimonials</h2>
+            <p style="color: rgba(255, 255, 255, 0.8);">What corporate clients and partners say about our social events</p>
+        </div>
+        <div class="testimonial-slider-wedding">
+            <!-- Testimonial 1 -->
+            <div class="testimonial-card-wedding">
+                <div class="testimonial-content-wedding">
+                    <div class="quote-icon-wedding">"</div>
+                    <p class="testimonial-text-wedding">Manghal Dhwani transformed our annual gala into an unforgettable experience. Their team handled everything from venue selection to entertainment, allowing us to focus on networking with our VIP clients. The event generated 40% more leads than previous years.</p>
+                    <div class="client-info-wedding">
+                        <img src="../images/people-3.jpg" alt="CEO" class="client-avatar-wedding">
+                        <h4 class="client-name-wedding">Rahul Kapoor</h4>
+                        <p class="client-role-wedding">CEO, Sterling Financial</p>
+                    </div>
+                </div>
+            </div>
 
+            <!-- Testimonial 2 -->
+            <div class="testimonial-card-wedding">
+                <div class="testimonial-content-wedding">
+                    <div class="quote-icon-wedding">"</div>
+                    <p class="testimonial-text-wedding">Our product launch event was executed with precision by Manghal Dhwani. Their innovative stage design and seamless AV integration made our presentation truly impactful. The social media buzz they generated resulted in 2M+ impressions.</p>
+                    <div class="client-info-wedding">
+                        <img src="../images/people-8.jpg" alt="Marketing Director" class="client-avatar-wedding">
+                        <h4 class="client-name-wedding">Neha Sharma</h4>
+                        <p class="client-role-wedding">Marketing Director, TechNovate</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="testimonial-card-wedding">
+                <div class="testimonial-content-wedding">
+                    <div class="quote-icon-wedding">"</div>
+                    <p class="testimonial-text-wedding">The corporate anniversary celebration they organized was the talk of our industry. Manghal Dhwani's attention to detail in decor, catering, and guest management exceeded all expectations. Our international delegates were particularly impressed.</p>
+                    <div class="client-info-wedding">
+                        <img src="../images/people-4.png" alt="COO" class="client-avatar-wedding">
+                        <h4 class="client-name-wedding">Arjun Mehta</h4>
+                        <p class="client-role-wedding">COO, Global Enterprises</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-nav">
+            <div class="testimonial-dot active"></div>
+            <div class="testimonial-dot"></div>
+            <div class="testimonial-dot"></div>
+        </div>
+    </div>
+</section>
 <!-- Social Events CTA Section -->
 <section class="wedding-cta wedding-section" id="contact">
     <div class="cta-content">
@@ -1406,7 +1462,6 @@ background: linear-gradient(rgba(45, 11, 54, 0.7), rgba(59, 10, 71, 0.7)), url('
         <a href="/form" class="btn-wedding">Start Planning</a>
     </div>
 </section>
-
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
@@ -1573,68 +1628,6 @@ background: linear-gradient(rgba(45, 11, 54, 0.7), rgba(59, 10, 71, 0.7)), url('
     }
   },
   "retina_detect": true
-});
-// Improved text animation with space handling and visibility control
-document.addEventListener('DOMContentLoaded', function() {
-    const heroTitle = document.querySelector('.wedding-hero h1');
-    
-    // Only animate if the element exists
-    if (heroTitle) {
-        const heroText = heroTitle.textContent.trim(); // Trim to remove extra whitespace
-        heroTitle.innerHTML = ''; // Clear the content
-        
-        // Create a document fragment for better performance
-        const fragment = document.createDocumentFragment();
-        let delayCounter = 0;
-        
-        for (let i = 0; i < heroText.length; i++) {
-            const char = heroText[i];
-            
-            // Skip animating spaces (but still preserve them in the DOM)
-            if (char === ' ') {
-                const spaceSpan = document.createElement('span');
-                spaceSpan.textContent = ' ';
-                spaceSpan.style.display = 'inline'; // Ensure spaces are rendered
-                fragment.appendChild(spaceSpan);
-                continue;
-            }
-            
-            const span = document.createElement('span');
-            span.className = 'text-letter';
-            span.textContent = char;
-            span.style.animationDelay = `${delayCounter * 0.05}s`;
-            fragment.appendChild(span);
-            delayCounter++; // Only increment delay for non-space characters
-        }
-        
-        heroTitle.appendChild(fragment);
-        
-        // Improved Intersection Observer
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const letters = entry.target.querySelectorAll('.text-letter');
-                    letters.forEach(letter => {
-                        // Make sure animation only plays when actually visible
-                        letter.style.visibility = 'visible';
-                        letter.classList.add('visible');
-                    });
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { 
-            threshold: 0.5,
-            rootMargin: '0px 0px -100px 0px' // Trigger when 100px from bottom of viewport
-        });
-        
-        // Hide letters initially to prevent flash before animation
-        const letters = heroTitle.querySelectorAll('.text-letter');
-        letters.forEach(letter => {
-            letter.style.visibility = 'hidden';
-        });
-        
-        observer.observe(heroTitle);
-    }
 });
 
 

@@ -122,8 +122,8 @@
 /* Adjust for mobile */
 @media (max-width: 768px) {
     .logo-img {
-        width: 36px;
-        height: 36px;
+        width: 70px;
+        height: 70px;
     }
 }
         .nav-links {
@@ -1543,7 +1543,128 @@
         font-size: 2.5rem;
       }
     }
-    
+     /* Dialog Styles */
+.dialog-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(45, 11, 54, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+}
+
+.dialog-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.dialog-box {
+    background: white;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    padding: 30px;
+    text-align: center;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.3s ease 0.1s;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.dialog-overlay.active .dialog-box {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.dialog-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(90deg, var(--deep-plum), var(--muted-mauve));
+}
+
+.dialog-box.error::before {
+    background: linear-gradient(90deg, #E74C3C, #C0392B);
+}
+
+.dialog-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--deep-plum), var(--muted-mauve));
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 2.5rem;
+    box-shadow: 0 5px 15px rgba(181, 141, 174, 0.4);
+}
+
+.dialog-icon.error {
+    background: linear-gradient(135deg, #E74C3C, #C0392B);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+}
+
+.dialog-title {
+    font-size: 1.5rem;
+    color: var(--deep-plum);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.dialog-title.error {
+    color: #E74C3C;
+}
+
+.dialog-message {
+    color: var(--charcoal);
+    margin-bottom: 25px;
+    line-height: 1.6;
+}
+
+.dialog-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: linear-gradient(135deg, var(--muted-mauve), var(--deep-plum));
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(181, 141, 174, 0.4);
+}
+
+.dialog-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(181, 141, 174, 0.6);
+}
+
+.dialog-btn.error {
+    background: linear-gradient(135deg, #E74C3C, #C0392B);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+    color: white;
+}
+
+.dialog-btn.error:hover {
+    background: linear-gradient(135deg, #C0392B, #E74C3C);
+    box-shadow: 0 8px 20px rgba(231, 76, 60, 0.6);
+}
     </style>
 </head>
 <body>
@@ -1912,29 +2033,30 @@
         <h2>Contact Us</h2>
         <p>Get in touch with us to start planning your perfect event today.</p>
     </div>
-    <div class="contact-container">
-        <!-- FORM FIRST NOW -->
-        <div class="contact-form">
-            <form id="eventForm" action="https://script.google.com/macros/s/AKfycbx50KP1RRg0dcgvtOalut7bPuQApVjTmum_tyyV6UhldxzOmFGReKfG1THbYKVnSKIfgQ/exec" method="POST">
-                <div class="form-group">
-                    <label for="name">Your Name</label>
-                    <input type="text" id="name" name="user_name" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="user_email" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="user_phone" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Your Message</label>
-                    <textarea id="message" name="message" class="form-control" required></textarea>
-                </div>
-                <button type="submit" class="btn1n">Send Message</button>
-            </form>
-        </div>
+
+         <div class="contact-container">
+            <!-- FORM FIRST NOW -->
+            <div class="contact-form">
+                <form id="eventForm" action="https://script.google.com/macros/s/AKfycbwgJUH8UsZaAz5QGhTzlvMwZfTCD4bftgBYlrbshjYyATpoVqudozoa0cp6EN6Tt9kD0g/exec" method="POST">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="user_name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="user_email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="user_phone" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="btn1n">Send Message</button>
+                </form>
+            </div>
 
         <!-- CONTACT INFO SECOND NOW -->
         <div class="contact-info">
@@ -1997,6 +2119,29 @@
     </div>
 </section>
 
+    <!-- Success Dialog -->
+    <div class="dialog-overlay" id="successDialog">
+        <div class="dialog-box">
+            <div class="dialog-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <h3 class="dialog-title">Thank You!</h3>
+            <p class="dialog-message">Your message has been submitted successfully. Our team will contact you within 24 hours.</p>
+            <button class="dialog-btn" id="successDialogClose">Continue</button>
+        </div>
+    </div>
+    
+    <!-- Error Dialog -->
+    <div class="dialog-overlay" id="errorDialog">
+        <div class="dialog-box error">
+            <div class="dialog-icon error">
+                <i class="fas fa-exclamation"></i>
+            </div>
+            <h3 class="dialog-title error">Submission Failed</h3>
+            <p class="dialog-message">There was an error submitting your form. Please check your connection and try again. If the problem persists, contact us directly.</p>
+            <button class="dialog-btn error" id="errorDialogClose">Try Again</button>
+        </div>
+    </div>
  <footer>
         <div class="footer-container">
             <div class="footer-col">
@@ -2247,27 +2392,78 @@ window.addEventListener('scroll', animateCards);
 });
 
 
-  const contactForm = document.getElementById('eventForm');
-
-  contactForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      const formData = new FormData(contactForm);
-
-      fetch(contactForm.action, {
-          method: 'POST',
-          body: formData
-      })
-      .then(response => response.text())
-      .then(data => {
-          alert('Thank you for your message! We will get back to you soon.');
-          contactForm.reset();
-      })
-      .catch(error => {
-          alert('Something went wrong. Please try again later.');
-          console.error(error);
-      });
-  });
+   document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('eventForm');
+            const successDialog = document.getElementById('successDialog');
+            const errorDialog = document.getElementById('errorDialog');
+            const successDialogClose = document.getElementById('successDialogClose');
+            const errorDialogClose = document.getElementById('errorDialogClose');
+            
+            // Form submission handler
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Show loading state (you might want to add a loading spinner)
+                const submitBtn = form.querySelector('.btn1n');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = 'Sending... <i class="fas fa-spinner fa-spin"></i>';
+                
+                // Prepare form data
+                const formData = new FormData(form);
+                
+                // Submit to Google Apps Script
+                fetch(form.action, {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    // Show success dialog
+                    successDialog.classList.add('active');
+                    
+                    // Reset form
+                    form.reset();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    // Show error dialog
+                    errorDialog.classList.add('active');
+                })
+                .finally(() => {
+                    // Reset button state
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'Send Message';
+                });
+            });
+            
+            // Close success dialog handler
+            successDialogClose.addEventListener('click', function() {
+                successDialog.classList.remove('active');
+            });
+            
+            // Close error dialog handler
+            errorDialogClose.addEventListener('click', function() {
+                errorDialog.classList.remove('active');
+            });
+            
+            // Close dialogs when clicking outside
+            successDialog.addEventListener('click', function(e) {
+                if (e.target === successDialog) {
+                    successDialog.classList.remove('active');
+                }
+            });
+            
+            errorDialog.addEventListener('click', function(e) {
+                if (e.target === errorDialog) {
+                    errorDialog.classList.remove('active');
+                }
+            });
+        });
 
 
     </script>

@@ -174,7 +174,7 @@
             z-index: 1;
             opacity: 0;
             transform: translateY(20px);
-            animation: fadeInUp 1s ease forwards 0.5s;
+     animation: fadeInUp 1s ease forwards 0.5s;
              word-break: break-word; /* Prevents overflow */
             overflow-wrap: break-word;  /* Ensures compatibility */
         }
@@ -438,6 +438,7 @@
 
         .package-features {
             padding: 30px;
+            opacity: 0;
         }
 
         .feature-list {
@@ -472,6 +473,7 @@
             font-weight: 600;
             text-decoration: none;
             transition: all 0.3s ease;
+            opacity: 0;
         }
 
         .package-btn:hover {
@@ -829,6 +831,7 @@
             scroll-behavior: smooth;
             -webkit-overflow-scrolling: touch;
             padding-bottom: 30px;
+            opacity: 0;
         }
 
         .testimonial-slider-wedding::-webkit-scrollbar {
@@ -1706,68 +1709,6 @@
     }
   },
   "retina_detect": true
-});
-// Improved text animation with space handling and visibility control
-document.addEventListener('DOMContentLoaded', function() {
-    const heroTitle = document.querySelector('.wedding-hero h1');
-    
-    // Only animate if the element exists
-    if (heroTitle) {
-        const heroText = heroTitle.textContent.trim(); // Trim to remove extra whitespace
-        heroTitle.innerHTML = ''; // Clear the content
-        
-        // Create a document fragment for better performance
-        const fragment = document.createDocumentFragment();
-        let delayCounter = 0;
-        
-        for (let i = 0; i < heroText.length; i++) {
-            const char = heroText[i];
-            
-            // Skip animating spaces (but still preserve them in the DOM)
-            if (char === ' ') {
-                const spaceSpan = document.createElement('span');
-                spaceSpan.textContent = ' ';
-                spaceSpan.style.display = 'inline'; // Ensure spaces are rendered
-                fragment.appendChild(spaceSpan);
-                continue;
-            }
-            
-            const span = document.createElement('span');
-            span.className = 'text-letter';
-            span.textContent = char;
-            span.style.animationDelay = `${delayCounter * 0.05}s`;
-            fragment.appendChild(span);
-            delayCounter++; // Only increment delay for non-space characters
-        }
-        
-        heroTitle.appendChild(fragment);
-        
-        // Improved Intersection Observer
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const letters = entry.target.querySelectorAll('.text-letter');
-                    letters.forEach(letter => {
-                        // Make sure animation only plays when actually visible
-                        letter.style.visibility = 'visible';
-                        letter.classList.add('visible');
-                    });
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { 
-            threshold: 0.5,
-            rootMargin: '0px 0px -100px 0px' // Trigger when 100px from bottom of viewport
-        });
-        
-        // Hide letters initially to prevent flash before animation
-        const letters = heroTitle.querySelectorAll('.text-letter');
-        letters.forEach(letter => {
-            letter.style.visibility = 'hidden';
-        });
-        
-        observer.observe(heroTitle);
-    }
 });
 
 
