@@ -18,6 +18,8 @@
             --muted-mauve-alt: #A67899;
             --charcoal: #3A3A3A;
             --charcoal-alt: #2E2E2E;
+                    --gold: #CFAE90;
+            --gold-alt: #D8B999;
         }
 
         * {
@@ -1665,6 +1667,22 @@
     background: linear-gradient(135deg, #C0392B, #E74C3C);
     box-shadow: 0 8px 20px rgba(231, 76, 60, 0.6);
 }
+ ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--soft-cream);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold-alt);
+        }
     </style>
 </head>
 <body>
