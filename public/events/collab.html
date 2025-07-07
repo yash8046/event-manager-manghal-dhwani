@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Become a Collaborator | Event Management Company</title>
+    <style>
+        :root {
+            --deep-plum: #2D0B36;
+            --deep-plum-alt: #3B0A47;
+            --blush-peach: #F4CFC6;
+            --blush-peach-alt: #F7D6CB;
+            --soft-cream: #FDF8F4;
+            --soft-cream-alt: #FFF9F3;
+            --muted-mauve: #B58DAE;
+            --muted-mauve-alt: #A67899;
+            --charcoal: #3A3A3A;
+            --charcoal-alt: #2E2E2E;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: var(--soft-cream);
+            color: var(--charcoal);
+        }
+        
+        /* Collaborator Invite Section */
+        .collaborator-invite {
+            padding: 5rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .invite-header {
+            margin-bottom: 3rem;
+        }
+        
+        .invite-header h2 {
+            font-size: 2.5rem;
+            color: var(--deep-plum);
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .invite-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--muted-mauve);
+        }
+        
+        .invite-header p {
+            font-size: 1.1rem;
+            color: var(--charcoal-alt);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        
+        /* Form Styles */
+        .collaborator-form {
+            background-color: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--deep-plum);
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--muted-mauve);
+        }
+        
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        
+        .required-field::after {
+            content: '*';
+            color: #e74c3c;
+            margin-left: 4px;
+        }
+        
+        .form-row {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .form-row .form-group {
+            flex: 1;
+        }
+        
+        .submit-btn {
+            background-color: var(--muted-mauve);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            display: block;
+            margin: 2rem auto 0;
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--muted-mauve-alt);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .form-note {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--charcoal-alt);
+        }
+        
+        /* Custom Dialog Box */
+        .dialog-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .dialog-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .dialog-box {
+            background-color: white;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+        
+        .dialog-overlay.active .dialog-box {
+            transform: translateY(0);
+        }
+        
+        .dialog-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--blush-peach);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--deep-plum);
+            font-size: 2rem;
+        }
+        
+        .dialog-title {
+            color: var(--deep-plum);
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        .dialog-message {
+            color: var(--charcoal-alt);
+            text-align: center;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+        
+        .dialog-btn {
+            display: block;
+            background-color: var(--muted-mauve);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            margin: 0 auto;
+            font-size: 1rem;
+        }
+        
+        .dialog-btn:hover {
+            background-color: var(--muted-mauve-alt);
+            transform: translateY(-2px);
+        }
+        
+        .close-dialog {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--charcoal-alt);
+            transition: color 0.3s;
+        }
+        
+        .close-dialog:hover {
+            color: var(--deep-plum);
+        }
+        
+        @media (max-width: 768px) {
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+            
+            .collaborator-form {
+                padding: 2rem;
+            }
+            
+            .invite-header h2 {
+                font-size: 2rem;
+            }
+            
+            .dialog-box {
+                padding: 1.5rem;
+            }
+            
+            .dialog-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="collaborator-invite">
+        <div class="invite-header">
+            <h2>Join Our Network of Collaborators</h2>
+            <p>Are you a talented vendor, artist, or service provider in the events industry? We're always looking to partner with exceptional professionals who share our commitment to excellence.</p>
+        </div>
+        
+        <form id="collaboratorForm" class="collaborator-form" action="https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse" method="POST" target="hidden-iframe">
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name" class="required-field">Full Name</label>
+                    <input type="text" id="name" name="entry.2005620554" required>
+                </div>
+                <div class="form-group">
+                    <label for="company" class="required-field">Company Name</label>
+                    <input type="text" id="company" name="entry.1065046570" required>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="email" class="required-field">Email Address</label>
+                    <input type="email" id="email" name="entry.1045781291" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone" class="required-field">Phone Number</label>
+                    <input type="tel" id="phone" name="entry.1166974658" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="service" class="required-field">Service Category</label>
+                <select id="service" name="entry.839337160" required>
+                    <option value="" disabled selected>Select your service</option>
+                    <option value="Catering">Catering</option>
+                    <option value="Entertainment">Entertainment</option>
+                    <option value="Floral Design">Floral Design</option>
+                    <option value="Photography/Videography">Photography/Videography</option>
+                    <option value="Venue Management">Venue Management</option>
+                    <option value="AV Production">AV Production</option>
+                    <option value="Event Design">Event Design</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="portfolio">Portfolio/Website Link</label>
+                <input type="url" id="portfolio" name="entry.1394030994" placeholder="https://">
+            </div>
+            
+            <div class="form-group">
+                <label for="experience" class="required-field">Years of Experience</label>
+                <input type="number" id="experience" name="entry.1934626881" min="0" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="message" class="required-field">Why would you like to collaborate with us?</label>
+                <textarea id="message" name="entry.839337160" required></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">Submit Application</button>
+            
+            <p class="form-note">We'll review your application and get back to you within 5-7 business days.</p>
+        </form>
+    </section>
+
+    <!-- Custom Dialog Box -->
+    <div class="dialog-overlay" id="successDialog">
+        <div class="dialog-box">
+            <button class="close-dialog" id="closeDialog">&times;</button>
+            <div class="dialog-icon">✓</div>
+            <h3 class="dialog-title">Application Submitted!</h3>
+            <p class="dialog-message">Thank you for your interest in collaborating with us. We've received your application and will review it carefully. You can expect to hear back from us within 5-7 business days.</p>
+            <button class="dialog-btn" id="dialogConfirm">Got It!</button>
+        </div>
+    </div>
+
+    <!-- Hidden iframe for form submission -->
+    <iframe name="hidden-iframe" style="display:none;"></iframe>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('collaboratorForm');
+            const successDialog = document.getElementById('successDialog');
+            const closeDialog = document.getElementById('closeDialog');
+            const dialogConfirm = document.getElementById('dialogConfirm');
+            
+            // Handle form submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Simple form validation
+                let isValid = true;
+                const requiredFields = form.querySelectorAll('[required]');
+                
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        field.style.borderColor = '#e74c3c';
+                        isValid = false;
+                    } else {
+                        field.style.borderColor = '#ddd';
+                    }
+                });
+                
+                if (!isValid) {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+                
+                // Create hidden iframe if it doesn't exist
+                if (!document.querySelector('iframe[name="hidden-iframe"]')) {
+                    const iframe = document.createElement('iframe');
+                    iframe.name = 'hidden-iframe';
+                    iframe.style.display = 'none';
+                    document.body.appendChild(iframe);
+                    form.target = 'hidden-iframe';
+                }
+                
+                // Submit the form
+                form.submit();
+                
+                // Show success dialog after a short delay
+                setTimeout(() => {
+                    successDialog.classList.add('active');
+                    form.reset();
+                }, 500);
+            });
+            
+            // Close dialog handlers
+            closeDialog.addEventListener('click', () => {
+                successDialog.classList.remove('active');
+            });
+            
+            dialogConfirm.addEventListener('click', () => {
+                successDialog.classList.remove('active');
+            });
+            
+            // Close when clicking outside dialog
+            successDialog.addEventListener('click', (e) => {
+                if (e.target === successDialog) {
+                    successDialog.classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

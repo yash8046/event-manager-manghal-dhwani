@@ -1401,59 +1401,7 @@
         </div>
     </div>
 </section>
-<section class="wedding-testimonials wedding-section" id="testimonials">
-    <div class="testimonials-container-wedding">
-        <div class="section-title-wedding">
-            <h2 style="color: var(--blush-peach);">Client Testimonials</h2>
-            <p style="color: rgba(255, 255, 255, 0.8);">What corporate clients and partners say about our social events</p>
-        </div>
-        <div class="testimonial-slider-wedding">
-            <!-- Testimonial 1 -->
-            <div class="testimonial-card-wedding">
-                <div class="testimonial-content-wedding">
-                    <div class="quote-icon-wedding">"</div>
-                    <p class="testimonial-text-wedding">Manghal Dhwani transformed our annual gala into an unforgettable experience. Their team handled everything from venue selection to entertainment, allowing us to focus on networking with our VIP clients. The event generated 40% more leads than previous years.</p>
-                    <div class="client-info-wedding">
-                        <img src="../images/people-3.jpg" alt="CEO" class="client-avatar-wedding">
-                        <h4 class="client-name-wedding">Rahul Kapoor</h4>
-                        <p class="client-role-wedding">CEO, Sterling Financial</p>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Testimonial 2 -->
-            <div class="testimonial-card-wedding">
-                <div class="testimonial-content-wedding">
-                    <div class="quote-icon-wedding">"</div>
-                    <p class="testimonial-text-wedding">Our product launch event was executed with precision by Manghal Dhwani. Their innovative stage design and seamless AV integration made our presentation truly impactful. The social media buzz they generated resulted in 2M+ impressions.</p>
-                    <div class="client-info-wedding">
-                        <img src="../images/people-8.jpg" alt="Marketing Director" class="client-avatar-wedding">
-                        <h4 class="client-name-wedding">Neha Sharma</h4>
-                        <p class="client-role-wedding">Marketing Director, TechNovate</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Testimonial 3 -->
-            <div class="testimonial-card-wedding">
-                <div class="testimonial-content-wedding">
-                    <div class="quote-icon-wedding">"</div>
-                    <p class="testimonial-text-wedding">The corporate anniversary celebration they organized was the talk of our industry. Manghal Dhwani's attention to detail in decor, catering, and guest management exceeded all expectations. Our international delegates were particularly impressed.</p>
-                    <div class="client-info-wedding">
-                        <img src="../images/people-4.png" alt="COO" class="client-avatar-wedding">
-                        <h4 class="client-name-wedding">Arjun Mehta</h4>
-                        <p class="client-role-wedding">COO, Global Enterprises</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="testimonial-nav">
-            <div class="testimonial-dot active"></div>
-            <div class="testimonial-dot"></div>
-            <div class="testimonial-dot"></div>
-        </div>
-    </div>
-</section>
 <!-- Social Events CTA Section -->
 <section class="wedding-cta wedding-section" id="contact">
     <div class="cta-content">
@@ -1463,7 +1411,8 @@
     </div>
 </section>
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script>
         // Mobile Menu Toggle
         const hamburger = document.querySelector('.hamburger');
@@ -1508,7 +1457,7 @@
 
         // Animate Elements on Scroll
         function animateOnScroll() {
-            const elements = document.querySelectorAll('.package-card, .gallery-item-wedding, .timeline-item, .team-member');
+            const elements = document.querySelectorAll('.package-card, .gallery-item-wedding, .timeline-item');
             
             elements.forEach(element => {
                 const elementPosition = element.getBoundingClientRect().top;
@@ -1524,7 +1473,8 @@
         window.addEventListener('scroll', animateOnScroll);
 
         // Testimonial Slider
-        const testimonialSlider = document.querySelector('.testimonial-slider-wedding');
+
+       /* const testimonialSlider = document.querySelector('.testimonial-slider-wedding');
         const testimonialDots = document.querySelectorAll('.testimonial-dot');
         let currentSlide = 0;
 
@@ -1547,7 +1497,7 @@
         setInterval(() => {
             currentSlide = (currentSlide + 1) % testimonialDots.length;
             goToSlide(currentSlide);
-        }, 5000);
+        }, 5000);*/
 
         // Particles.js Configuration
         particlesJS('particles-js', {
