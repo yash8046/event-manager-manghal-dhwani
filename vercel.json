@@ -27,6 +27,10 @@
     {
       "source": "/form",
       "destination": "/events/form.html"
+    },
+    {
+      "source": "/collab",
+      "destination": "/events/collab.html"
     }
   ],
   "redirects": [
@@ -63,6 +67,11 @@
     {
       "source": "/events/form.html",
       "destination": "/form",
+      "permanent": true
+    },
+    {
+      "source": "/events/collab.html",
+      "destination": "/collab",
       "permanent": true
     }
   ]
